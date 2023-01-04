@@ -1,6 +1,7 @@
 # nvim
 My personal config file for Neovim
 
+
 # Setup
 Clone this repo
 ```
