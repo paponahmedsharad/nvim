@@ -56,3 +56,4 @@ if not lspconfig.quick_lint_js then
   }
 end
 lspconfig.quick_lint_js.setup {}
+lspconfig.rome.setup{}
