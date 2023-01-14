@@ -15,13 +15,15 @@ vim.opt.rtp:prepend(lazypath)
 --──────────────── PLUGINS ──────────────────────
 require("lazy").setup({
 	--> colorscheme
-	-- "lunarvim/tokyonight.nvim",
+	"tanvirtin/monokai.nvim",
+	"lunarvim/Colorschemes",
 	{
-		"folke/tokyonight.nvim",
+		-- "folke/tokyonight.nvim",
+		"lunarvim/tokyonight.nvim",
 		lazy = false, -- make sure we load this during startup if it is your main colorscheme
 		priority = 1000, -- make sure to load this before all the other start plugins
 		config = function()
-			vim.cmd([[colorscheme tokyonight-night]])
+			-- vim.cmd([[colorscheme tokyonight-night]])
 		end,
 	},
 
@@ -48,7 +50,8 @@ require("lazy").setup({
 	"folke/which-key.nvim", --> Popup keymaps
 	{ "numToStr/Comment.nvim", event = "VeryLazy" }, --> Toggle Comment
 	"akinsho/toggleterm.nvim", --> Terminal inside nvim
-	{ "nvim-treesitter/nvim-treesitter", event = "VeryLazy" }, --> Syntax Hightlight
+	{ "nvim-treesitter/nvim-treesitter" }, -- event = "VeryLazy" }, --> Syntax Hightlight
+	"nvim-treesitter/nvim-treesitter-textobjects",
 	{ "p00f/nvim-ts-rainbow", event = "VeryLazy" }, --> Parenthesis highlighting
 	{ "lukas-reineke/indent-blankline.nvim", event = "VeryLazy" }, --> Indentation
 	{ "folke/twilight.nvim", event = "VeryLazy" }, --> Foucs
@@ -62,7 +65,7 @@ require("lazy").setup({
 	-------------> lsp --------------
 	"neovim/nvim-lspconfig", --> Nvim Lsp
 	"williamboman/mason.nvim", --> Lsp server installer
-	"williamboman/mason-lspconfig.nvim", --> Connect mason with nvim lsp
+	{ "williamboman/mason-lspconfig.nvim", lazy = true }, --> Connect mason with nvim lsp
 	"hrsh7th/nvim-cmp", --> Auto completion engine
 	"hrsh7th/cmp-cmdline", --> AutoCompletion from command
 	{ "hrsh7th/cmp-buffer", event = "VeryLazy" }, --> AutoCompletion from buffer
@@ -105,7 +108,7 @@ require("lazy").setup({
 		end,
 	},
 
-	{ dir = "~/repo/onedarker" },
+	-- { dir = "~/repo/Colorschemes" },
 	{ dir = "~/repo/melange" },
 
 	-- {

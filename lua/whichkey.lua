@@ -90,8 +90,8 @@ local mappings = {
 	l = {
 		name = "LSP",
 		g = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Lsp definition" },
-		r = { "<cmd>lua vim.lsp.buf.references()<cr>", "Lsp references" },
-		n = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+		R = { "<cmd>lua vim.lsp.buf.references()<cr>", "Lsp references" },
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
 		h = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "Lsp Help" },
 		f = { "<cmd>lua vim.lsp.buf.format({async = true})<cr>", "Lsp Format" },
