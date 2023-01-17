@@ -69,6 +69,7 @@ require("lazy").setup({
 	"hrsh7th/nvim-cmp", --> Auto completion engine
 	"hrsh7th/cmp-cmdline", --> AutoCompletion from command
 	{ "hrsh7th/cmp-buffer", event = "VeryLazy" }, --> AutoCompletion from buffer
+	"hrsh7th/cmp-path",
 	"hrsh7th/cmp-nvim-lsp", --> LSP AutoCompletion
 	"saadparwaiz1/cmp_luasnip", -->
 	{ "L3MON4D3/LuaSnip", event = "VeryLazy" }, --> Snippets engine
@@ -97,6 +98,7 @@ require("lazy").setup({
 		end,
 	},
 	--> test
+	"kdheepak/lazygit.nvim",
 	"Shatur/neovim-session-manager", --> session manager
 	"rcarriga/nvim-notify",
 	{
@@ -113,8 +115,15 @@ require("lazy").setup({
 
 	-- {
 	-- 	"jackMort/ChatGPT.nvim",
+	-- 	dependencies = {
+	-- 		"MunifTanjim/nui.nvim",
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"nvim-telescope/telescope.nvim",
+	-- 	},
 	-- 	config = function()
-	-- 		require("chatgpt").setup()
+	-- 		require("chatgpt").setup({
+	-- 			-- optional configuration
+	-- 		})
 	-- 	end,
 	-- },
 })

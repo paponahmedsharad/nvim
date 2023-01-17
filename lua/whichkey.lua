@@ -76,15 +76,15 @@ local mappings = {
 	},
 	--────────────────── packer ────────────────────────
 	p = {
-		name = "Packer",
-		r = { "<cmd>luafile %<cr>", "Reload" },
-		c = { "<cmd>PackerCompile<cr>", "Compile" },
-		C = { "<cmd>PackerClean<cr>", "Clean" },
-		i = { "<cmd>PackerInstall<cr>", "Install" },
+		name = "Plugins",
+		i = { "<cmd>Lazy install<cr>", "Install" },
 		s = { "<cmd>Lazy sync<cr>", "Sync" },
-		S = { "<cmd>PackerStatus<cr>", "Status" },
-		u = { "<cmd>PackerUpdate<cr>", "Update" },
-		p = { "<cmd>TermExec cmd='python %'<cr>", "Python compile" },
+		S = { "<cmd>Lazy clear<cr>", "Status" },
+		c = { "<cmd>Lazy clean<cr>", "Clean" },
+		u = { "<cmd>Lazy update<cr>", "Update" },
+		p = { "<cmd>Lazy profile<cr>", "Profile" },
+		l = { "<cmd>Lazy log<cr>", "Log" },
+		d = { "<cmd>Lazy debug<cr>", "Debug" },
 	},
 	--────────────────── lsp ────────────────────────
 	l = {
@@ -146,31 +146,30 @@ local mappings = {
 		p = { ":MindOpenProject<cr>", "Mind Projects" },
 		c = { ":MindClose<cr>", "Mind Close" },
 	},
+
+	g = {
+		name = "Git",
+		g = { "<cmd>LazyGit<CR>", "Lazygit" },
+		j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
+		k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
+		l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
+		p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
+		r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
+		R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
+		s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+		u = {
+			"<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
+			"Undo Stage Hunk",
+		},
+		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
+		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+		c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
+		d = {
+			"<cmd>Gitsigns diffthis HEAD<cr>",
+			"Diff",
+		},
+	},
 }
 
 which_key.setup(setup)
 which_key.register(mappings, opts)
-
---────────────────── removed ────────────────────────
--- g = {
---   name = "Git",
---   g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
---   j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
---   k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
---   l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
---   p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
---   r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
---   R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
---   s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
---   u = {
---     "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
---     "Undo Stage Hunk",
---   },
---   o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
---   b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
---   c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
---   d = {
---     "<cmd>Gitsigns diffthis HEAD<cr>",
---     "Diff",
---   },
--- },
