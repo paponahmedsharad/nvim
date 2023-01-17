@@ -69,7 +69,8 @@ vim.keymap.set({ "i", "n" }, "<C-p>", [[<Esc>:CccPick<cr>]])
 
 --> luaSnip
 map("i", "<A-n>", "<Plug>luasnip-next-choice", opts) -- todo
-map("n", "<A-g>", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
+-- map("n", "<A-g>", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
+map("n", "<A-g>", "<cmd>ChatGPT<cr>", opts)
 
 --> neoclip
 -- map({ "n", "i" }, "<A-c>", "<cmd>Telescope neoclip<CR>", opts)
@@ -79,10 +80,10 @@ map({ "n", "i" }, "<A-c>", "<cmd>FzfLua registers<CR>", opts)
 
 --> telescope frecency
 vim.api.nvim_set_keymap(
-  "n",
-  "  ",
-  "<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>",
-  { noremap = true, silent = true }
+	"n",
+	"  ",
+	"<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>",
+	{ noremap = true, silent = true }
 )
 
 --> replace the word under the cursor
@@ -104,7 +105,7 @@ map({ "n", "i" }, "<A-f>", "<cmd>HopWord<CR>")
 map("i", "df", "<cmd>lua require('cmp').confirm({ select = true })<CR>")
 map("i", "fd", "<cmd>lua require('cmp').confirm({ select = true })<CR>")
 
-vim.cmd [[
+vim.cmd([[
 "---> select the first item from lsp/cmp
 " im df <C-j><CR>
 " im fd <C-j><CR>
@@ -120,7 +121,7 @@ cm fd <Tab>
 " --> begging/end of the line "
 im <A-i> <Esc>^
 im <A-a> <Esc>A
-]]
+]])
 
 -----------------------> extra cinfigaration for neovide ------------>
 --> paste in command line
@@ -132,7 +133,7 @@ map("v", "<C-v>", [[<cmd>s#\v(\w)(\S*)#\u\1\L\2#g | noh<CR><Esc>]])
 -- map("v", "<C-v>", [[<cmd>s/\<\(\w\)\(\w*\)\>/\u\1\L\2/g<CR><cmd>noh<CR><ESC>]])
 
 --> A FUNCTION TO CHANGE VISUALL SELECT TEXT "CASE" with <S-~>
-vim.cmd [[
+vim.cmd([[
 function! TwiddleCase(str)
   if a:str ==# toupper(a:str)
     let result = tolower(a:str)
@@ -144,7 +145,7 @@ function! TwiddleCase(str)
   return result
 endfunction
 vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
-]]
+]])
 
 --> resize split
 map("n", "=", [[<cmd>vertical resize +5<cr>]])
