@@ -13,11 +13,11 @@ require("lazy").setup({
 	--> Colorscheme
 	{ "tanvirtin/monokai.nvim" },
 	{ "lunarvim/Colorschemes" },
-	{ "lunarvim/tokyonight.nvim", -- "folke/tokyonight.nvim",
+	{ "folke/tokyonight.nvim",
 		lazy = false,                                       --> load this during startup
 		priority = 1000,                                    --> load this before all the other start plugins
 		config = function()
-			-- vim.cmd([[colorscheme tokyonight-night]])
+			vim.cmd([[colorscheme tokyonight-night]])
 		end,
 	},
 

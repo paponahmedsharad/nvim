@@ -96,10 +96,10 @@ map("n", "<A-[>", "<cmd>lua vim.lsp.buf.definition()<CR>")
 map("n", "<A-]>", "<cmd>lua vim.lsp.buf.rename()<CR>")
 
 --> hop
-map("n", "f", "<cmd>HopChar1<CR>")
-map("n", "F", "<cmd>HopChar1BC<CR>")
+-- map("n", "f", "<cmd>HopChar1<CR>")
+-- map("n", "F", "<cmd>HopChar1BC<CR>")
 map("n", ";", "<cmd>HopWord<CR>")
-map({ "n", "i" }, "<A-f>", "<cmd>HopWord<CR>")
+map({ "n", "i" }, "<A-f>", "<cmd>HopChar2<CR>")
 
 --> cmp
 map("i", "df", "<cmd>lua require('cmp').confirm({ select = true })<CR>")

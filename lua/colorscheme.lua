@@ -1,6 +1,6 @@
 -----------------------> set colorscheme -------------------->
 -- vim.cmd([[colorscheme onedarker]])
-vim.cmd([[colorscheme tokyonight-night]])
+-- vim.cmd([[colorscheme tokyonight-night]])
 
 --───────────────── CUSTOM COLOR CONFIG ──────────────────────
 vim.cmd([[ hi MsgArea guifg = '#00ff98' ]]) --> cmd/MsgArea color
