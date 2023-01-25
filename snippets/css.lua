@@ -114,6 +114,12 @@ cs("not", { --
 	t({ "", "}" }),
 })
 
+cs("bs", { --
+	t({ "box-sizing: " }),
+	i(1, "border-box"),
+	t({ ";", "" }),
+})
+
 cs("me", { --> media query
 	t({ "@media (min-width: " }),
 	i(1, "740px"),

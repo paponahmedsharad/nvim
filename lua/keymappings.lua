@@ -14,6 +14,8 @@ map("i", "<C-h>", "<Left>", opts)
 map("i", "<C-l>", "<Right>", opts)
 map("i", "<C-j>", "<Down>", opts)
 map("i", "<C-k>", "<Up>", opts)
+-- map({ "i", "s", }, "<C-e>", "<Esc>A", opts)
+map({ "i", "s" }, "<leader>a", "<Esc>A", opts)
 
 --────────KeysForMovingInDifferentBuffer/Window──────
 map("n", "<C-h>", "<C-w>h", opts)
@@ -24,6 +26,10 @@ map("n", "<C-k>", "<C-w>k", opts)
 --─────────────── Inser A NewLine ────────────────────
 map({ "i", "s", "n" }, "fj", "<Esc>o", opts)
 map({ "i", "s", "n" }, "jf", "<Esc>o", opts)
+-- map({ "n" }, "<CR>", "m`o<Esc>``", opts)
+-- map({ "n" }, "<CR>", "m`O<Esc>``", opts)
+map({ "n" }, "<CR>", "<Cmd>call append(line('.'),repeat([''],v:count1))<CR>", opts)
+map({ "n" }, "<S-CR>", "<Cmd>call append(line('.') -1,repeat([''],v:count1))<CR>", opts)
 
 --─────────────── move around buffer ─────────────────
 map("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", opts) --> Goto next buffer
@@ -119,8 +125,8 @@ cm df <Tab>
 cm fd <Tab>
 
 " --> begging/end of the line "
-im <A-i> <Esc>^
-im <A-a> <Esc>A
+" im <A-i> <Esc>^
+" im <A-a> <Esc>A
 ]])
 
 -----------------------> extra cinfigaration for neovide ------------>

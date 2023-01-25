@@ -42,6 +42,7 @@ require("lazy").setup({
 
 	--> Feature
 	{ "nvim-neo-tree/neo-tree.nvim" },                    --> file browser
+  { 'echasnovski/mini.surround', version = false, config= function () require('mini.surround').setup() end,},
 	-- { "MunifTanjim/nui.nvim" },                        --> required for neotree(UI Component Library for Neovim)
 	{ "folke/which-key.nvim" },                           --> Popup keymaps
 	{ "numToStr/Comment.nvim", event = "VeryLazy" },      --> Toggle Comment
@@ -101,7 +102,6 @@ require("lazy").setup({
 			require("mind").setup()
 		end,
 	},
-
 	-- { dir = "~/repo/Colorschemes" },
 	-- { dir = "~/repo/melange" },
 

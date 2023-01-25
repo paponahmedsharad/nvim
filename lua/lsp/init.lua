@@ -23,7 +23,29 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 ---------------------------------------------------->
 lspconfig.tsserver.setup({
+	on_attach = require("lsp.handlers").on_attach,
+	capabilities = require("lsp.handlers").capabilities,
 	filetypes = { "javascript", "typescript", "typescriptreact", "typescript.tsx" },
+	root_dir = function()
+		return vim.loop.cwd()
+	end,
+})
+
+---------------------------------------------------->
+lspconfig.cssls.setup({
+	on_attach = require("lsp.handlers").on_attach,
+	capabilities = require("lsp.handlers").capabilities,
+	filetypes = { "css", "scss", "less" },
+	root_dir = function()
+		return vim.loop.cwd()
+	end,
+})
+
+---------------------------------------------------->
+lspconfig.cssls.setup({
+	on_attach = require("lsp.handlers").on_attach,
+	capabilities = require("lsp.handlers").capabilities,
+	filetypes = { "css", "scss", "less" },
 	root_dir = function()
 		return vim.loop.cwd()
 	end,

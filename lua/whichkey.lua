@@ -5,8 +5,8 @@ end
 
 local setup = {
 	plugins = {
-		marks = false,
-		registers = false,
+		marks = true,
+		registers = true,
 		spelling = { enabled = false, suggestions = 20 },
 		presets = {
 			operators = false,
@@ -15,7 +15,7 @@ local setup = {
 			windows = true, -- default bindings on <c-w>
 			nav = false, -- misc bindings to work with windows
 			z = false, -- bindings for folds, spelling and others prefixed with z
-			g = false, -- bindings for prefixed with g
+			g = true, -- bindings for prefixed with g
 		},
 	},
 

@@ -26,7 +26,7 @@ local options = {
 
 	scrolloff = 6,
 	sidescrolloff = 2,
-	updatetime = 400, --> faster completion (4000ms default)
+	updatetime = 500, --> faster completion (4000ms default)
 	timeoutlen = 150, --> time to wait for a mapped sequence to complete (in milliseconds)
 
 	wrap = false, --> display lines as one long line

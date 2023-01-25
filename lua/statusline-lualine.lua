@@ -201,33 +201,6 @@ ins_left({
 	end,
 })
 
--- ins_left {
---   -- Lsp server name .
---   function()
---     local msg = ''
---     local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
---     local clients = vim.lsp.get_active_clients()
---     if next(clients) == nil then
---       return msg
---     end
---     for _, client in ipairs(clients) do
---       local filetypes = client.config.filetypes
---       if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
---         return client.name
---       end
---     end
---     return msg
---   end,
---   icon = ' LSP:',
---   color = { fg = "673e51", gui = 'bold' },
---   color = function()
---     local mode_color = {
---       n = colors.cyan,
---       i = colors.ibg,
---     }
---     return { fg = mode_color[vim.fn.mode()] }
---   end,
--- }
 ------------------------------------------------------->
 
 ins_right({
@@ -248,7 +221,6 @@ ins_right({
 		return msg
 	end,
 	icon = " LSP:",
-	color = { fg = "673e51", gui = "bold" },
 	color = function()
 		local mode_color = {
 			n = colors.cyan,
@@ -300,21 +272,21 @@ ins_right({
 --   end,
 -- }
 
-ins_right({
-	"fileformat",
-	fmt = string.upper,
-	icons_enabled = true,
-	-- color = { fg = colors.green, gui = '' },
-	color = function()
-		local mode_color = {
-			n = colors.green,
-			i = colors.ibg,
-			c = colors.bg,
-			s = colors.ibg,
-		}
-		return { fg = mode_color[vim.fn.mode()] }
-	end,
-})
+-- ins_right({
+-- 	"fileformat",
+-- 	fmt = string.upper,
+-- 	icons_enabled = true,
+-- 	-- color = { fg = colors.green, gui = '' },
+-- 	color = function()
+-- 		local mode_color = {
+-- 			n = colors.green,
+-- 			i = colors.ibg,
+-- 			c = colors.bg,
+-- 			s = colors.ibg,
+-- 		}
+-- 		return { fg = mode_color[vim.fn.mode()] }
+-- 	end,
+-- })
 
 ins_right({
 	"branch",
