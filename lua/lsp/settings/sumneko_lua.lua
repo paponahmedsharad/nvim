@@ -1,9 +1,7 @@
 return {
   settings = {
-
     Lua = {
       diagnostics = {
-        -- Get the language server to recognize the `vim` global
         globals = { "vim" },
       },
       workspace = {
@@ -12,9 +10,9 @@ return {
           [vim.fn.stdpath "config" .. "/lua"] = true,
         },
       },
-      -- telemetry = {
-      --   enable = false,
-      -- },
+      telemetry = {
+        enable = false,
+      },
     },
   },
 }

@@ -7,10 +7,10 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
--- local check_backspace = function()
--- 	local col = vim.fn.col(".") - 1
--- 	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
--- end
+local check_backspace = function()
+	local col = vim.fn.col(".") - 1
+	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+end
 
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
