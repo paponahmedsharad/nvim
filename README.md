@@ -9,6 +9,7 @@ $ git clone https://github.com/paponahmedsharad/nvim
 ```
 Then
 ```
-$ nvim +PackerSync
+nvim
 ```
+Wait...
 Done!
