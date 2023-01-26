@@ -46,9 +46,12 @@ im <A-p> <C-o>:%!js-beautify<cr><cr>
 
 " hi Constant	term=underline	ctermfg=Magenta		guifg=Magenta
 " hi PreProc	term=underline	ctermfg=LightBlue	guifg=#ff80ff
-" hi Type	term=underline		ctermfg=LightGreen	guifg=#60ff60 gui=bold
+" hi Type	term=underline		ctermfg=Black	guifg=Black gui=bold
+" hi Constant	term=underline		ctermfg=Black	guifg=Black gui=bold
 " hi Repeat	term=underline	ctermfg=White		guifg=Black
-" hi Operator				ctermfg=Red			guifg=Red
+hi Operator				ctermfg=Red			guifg=Red
 " hi Ignore				ctermfg=black		guifg=bg
 " hi Error	term=reverse ctermbg=Red ctermfg=White guibg=Red guifg=White
 " hi Todo	term=standout ctermbg=Yellow ctermfg=Black guifg=Blue guibg=Yellow
+
+hi Function	term=bold		ctermfg=White guifg=#1ae600

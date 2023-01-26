@@ -97,14 +97,14 @@ cs("bo", { -- [CMD] multiline vim.cmd{{{
 }) --}}}
 
 -- auto generate body when type bo<space>
-local auto = s("bo ", {
-	t({ "body {" }),
-	t({ "", "  " }),
-	i(1, ""),
-	t({ "", "" }),
-	t({ "}" }),
-})
-table.insert(autosnippets, auto)
+-- local auto = s("bo ", {
+-- 	t({ "body {" }),
+-- 	t({ "", "  " }),
+-- 	i(1, ""),
+-- 	t({ "", "" }),
+-- 	t({ "}" }),
+-- })
+-- table.insert(autosnippets, auto)
 
 cs("not", { --
 	t({ "nth-of-type(" }),
@@ -114,11 +114,11 @@ cs("not", { --
 	t({ "", "}" }),
 })
 
-cs("bs", { --
-	t({ "box-sizing: " }),
-	i(1, "border-box"),
-	t({ ";", "" }),
-})
+-- cs("bz", { --
+-- 	t({ "box-sizing: " }),
+-- 	i(1, "border-box"),
+-- 	t({ ";", "" }),
+-- })
 
 cs("me", { --> media query
 	t({ "@media (min-width: " }),
@@ -167,11 +167,6 @@ cs("bs", {
 })
 
 ---------------- common css property ---------
-cs("ba", { -- [CMD] multiline vim.cmd{{{
-	t({ "background: " }),
-	i(1, "#000000"),
-	t({ ";" }),
-})
 
 cs("co", { -- [CMD] multiline vim.cmd{{{
 	t({ "color: #" }),
@@ -179,66 +174,66 @@ cs("co", { -- [CMD] multiline vim.cmd{{{
 	t({ ";" }),
 })
 
-cs("fo", { -- [CMD] multiline vim.cmd{{{
-	t({ "font-size: " }),
-	i(1, ""),
-	t({ ";" }),
-})
+-- cs("fo", { -- [CMD] multiline vim.cmd{{{
+-- 	t({ "font-size: " }),
+-- 	i(1, ""),
+-- 	t({ ";" }),
+-- })
 
-cs("hei", { --
-	t({ "height: " }),
-	i(1, ""),
-	t({ "px;" }),
-})
+-- cs("hei", { --
+-- 	t({ "height: " }),
+-- 	i(1, ""),
+-- 	t({ "px;" }),
+-- })
 
-cs("wi", { --
-	t({ "width: " }),
-	i(1, ""),
-	t({ "px;" }),
-})
+-- cs("wi", { --
+-- 	t({ "width: " }),
+-- 	i(1, ""),
+-- 	t({ "px;" }),
+-- })
 
-cs("m", { --
-	t({ "margin: " }),
-	c(1, { t("0"), t("auto") }),
-	t({ ";" }),
-})
+-- cs("m", { --
+-- 	t({ "margin: " }),
+-- 	c(1, { t("0"), t("auto") }),
+-- 	t({ ";" }),
+-- })
 
-cs("p", { --
-	t({ "padding: " }),
-	i(1, "0"),
-	t({ ";" }),
-})
+-- cs("p", { --
+-- 	t({ "padding: " }),
+-- 	i(1, "0"),
+-- 	t({ ";" }),
+-- })
 
-cs("di", { --
-	t({ "display: " }),
-	i(1, ""),
-	t({ ";" }),
-})
+-- cs("di", { --
+-- 	t({ "display: " }),
+-- 	i(1, ""),
+-- 	t({ ";" }),
+-- })
 
-cs("po", { --
-	t({ "position: " }),
-	i(1, ""),
-	t({ ";" }),
-})
+-- cs("po", { --
+-- 	t({ "position: " }),
+-- 	i(1, ""),
+-- 	t({ ";" }),
+-- })
 
-cs("ri", { --
-	t({ "right: " }),
-	i(1, ""),
-	t({ ";" }),
-})
+-- cs("ri", { --
+-- 	t({ "right: " }),
+-- 	i(1, ""),
+-- 	t({ ";" }),
+-- })
 
-cs("le", { --
-	t({ "left: " }),
-	i(1, ""),
-	t({ ";" }),
-})
+-- cs("le", { --
+-- 	t({ "left: " }),
+-- 	i(1, ""),
+-- 	t({ ";" }),
+-- })
 
-cs("ali", { --
-	t({ "align-items: " }),
-	t("center"),
-	t({ ";", "" }),
-	i(1),
-})
+-- cs("ali", { --
+-- 	t({ "align-items: " }),
+-- 	t("center"),
+-- 	t({ ";", "" }),
+-- 	i(1),
+-- })
 
 -- Tutorial Snippets go here --
 -- local first = s("first", { t "hey, this is my first snippets<cr>" })

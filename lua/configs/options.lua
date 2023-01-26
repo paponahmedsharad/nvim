@@ -9,7 +9,7 @@ local options = {
 	backup = false, -- creates a backup file
 	number = true, --> shows number
 	relativenumber = false, --> relative number style
-	signcolumn = "yes",
+	signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
 	showtabline = 0, -- always show tabs
 	smarttab = true,
 	showmode = false, -- we don't need to see things like -- INSERT -- anymore
@@ -26,12 +26,12 @@ local options = {
 
 	scrolloff = 6,
 	sidescrolloff = 2,
-	updatetime = 500, --> faster completion (4000ms default)
+	updatetime = 300, --> faster completion (4000ms default)
 	timeoutlen = 150, --> time to wait for a mapped sequence to complete (in milliseconds)
 
 	wrap = false, --> display lines as one long line
 	whichwrap = "b,s,<,>,[,],h,l",
-	pumheight = 12, --> item show in popup window,
+	pumheight = 10, --> item show in popup window,
 	fileencoding = "utf-8",
 	cmdheight = 0, --> height below status line
 	splitbelow = true,
@@ -89,3 +89,9 @@ local builtins = {
 for _, plugin in ipairs(builtins) do
 	vim["loaded_" .. plugin] = 1
 end
+
+--> testing-stage
+vim.opt.shortmess:append("c") -- hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
+vim.opt.whichwrap:append("<,>,[,],h,l") -- keys allowed to move to the previous/next line when the beginning/end of line is reached
+vim.opt.iskeyword:append("-") -- treats words with `-` as single words
+vim.opt.formatoptions:remove({ "c", "r", "o" }) -- This is a sequence of letters which describes how automatic formatting is to be done

@@ -34,10 +34,10 @@ require("lazy").setup({
 	{ "nvim-telescope/telescope-frecency.nvim" },         --> shows frequently use files
 	{ "nvim-telescope/telescope-media-files.nvim" },
 	{ "kkharji/sqlite.lua" },                             --> Require For Telescope-frecency
-	{ "ibhagwan/fzf-lua" },                               --> fuzzy finder
   { "ThePrimeagen/harpoon" },                           --> kind of bookmarker for me
 	{ "Shatur/neovim-session-manager" },                  --> session manager
 	{ "nvim-telescope/telescope-ui-select.nvim", event = "VeryLazy" },
+	{ "ibhagwan/fzf-lua", config = function() require("fzf-lua") end, },
 	{ "phaazon/hop.nvim", branch = "v2", config = function() require("hop").setup({ keys = "etovxqpdygfblzhckisuran" }) end, },
 
 	--> Feature
@@ -60,15 +60,16 @@ require("lazy").setup({
 	{ "lukas-reineke/indent-blankline.nvim", event = "VeryLazy" }, --> Indentation
 	{ "lewis6991/gitsigns.nvim", event = "VeryLazy", config = function() require("gitsigns").setup() end, },
 
-	---> LSP
+	---> LSP/CMP
 	{ "neovim/nvim-lspconfig" },                          --> Nvim Lsp
 	{ "williamboman/mason.nvim" },                        --> Lsp server installer
 	{ "williamboman/mason-lspconfig.nvim", lazy = true }, --> Connect mason with nvim lsp
-	{ "hrsh7th/nvim-cmp" },                               --> Auto completion engine
-	{ "hrsh7th/cmp-cmdline" },                            --> AutoCompletion from command
+	{ "hrsh7th/cmp-nvim-lsp" },                           --> LSP AutoCompletion
 	{ "hrsh7th/cmp-buffer", event = "VeryLazy" },         --> AutoCompletion from buffer
 	{ "hrsh7th/cmp-path" },
-	{ "hrsh7th/cmp-nvim-lsp" },                           --> LSP AutoCompletion
+	{ "hrsh7th/cmp-cmdline" },                            --> AutoCompletion from command
+	{ "hrsh7th/nvim-cmp" },                               --> Auto completion engine
+  { "hrsh7th/cmp-nvim-lua" },
 	{ "L3MON4D3/LuaSnip", event = "VeryLazy" },           --> Snippets engine
 	{ "saadparwaiz1/cmp_luasnip" },                       --> luasnip completion source f
 	{ "rafamadriz/friendly-snippets" },                   --> Some snippets #TODO

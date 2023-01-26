@@ -17,11 +17,11 @@ treesitter.setup({
 	},
 
 	autopairs = {
-		enable = false,
+		enable = true,
 	},
 
-	sync_install = true, -- Install parsers synchronously (only applied to `ensure_installed`)
-	auto_install = true, -- Automatically install missing parsers when entering buffer
+	sync_install = false, -- Install parsers synchronously (only applied to `ensure_installed`)
+	auto_install = false, -- Automatically install missing parsers when entering buffer
 	ignore_install = { "java" }, -- List of parsers to ignore installing (for "all")
 
 	highlight = {
@@ -32,23 +32,16 @@ treesitter.setup({
 	indent = { enable = false },
 	-- indent = { enable = true, disable = { "yaml", "python", "c", "cpp" } },
 
-	textobjects = {
-		swap = {
-			enable = false,
-			-- swap_next = textobj_swap_keymaps,
-		},
-		-- move = textobj_move_keymaps,
-		select = {
-			enable = false,
-			-- keymaps = textobj_sel_keymaps,
-		},
-	},
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
+  },
 
 	rainbow = {
 		enable = true,
 		-- disable = { "jsx", "cpp", "html" }, --list of languages you want to disable the plugin for
 		extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-		max_file_lines = 300, -- Do not enable for files with more than n lines, int
+		max_file_lines = 1000, -- Do not enable for files with more than n lines, int
 		-- termcolors = {} -- table of colour name strings
 	},
 })
