@@ -97,14 +97,12 @@ cs("bo", { -- [CMD] multiline vim.cmd{{{
 }) --}}}
 
 -- auto generate body when type bo<space>
--- local auto = s("bo ", {
--- 	t({ "body {" }),
--- 	t({ "", "  " }),
--- 	i(1, ""),
--- 	t({ "", "" }),
--- 	t({ "}" }),
--- })
--- table.insert(autosnippets, auto)
+local auto = s("ccc", {
+	t({ "display: flex; justify-content: center; align-items: center;" }),
+	t({ "", "" }),
+	i(1, ""),
+})
+table.insert(autosnippets, auto)
 
 cs("not", { --
 	t({ "nth-of-type(" }),
@@ -114,11 +112,6 @@ cs("not", { --
 	t({ "", "}" }),
 })
 
--- cs("bz", { --
--- 	t({ "box-sizing: " }),
--- 	i(1, "border-box"),
--- 	t({ ";", "" }),
--- })
 
 cs("me", { --> media query
 	t({ "@media (min-width: " }),
@@ -133,112 +126,19 @@ cs("me", { --> media query
 
 cs("reset", {
 	t({
-		"* {",
-		"margin: 0;",
-		"padding: 0;",
-		"box-sizing: border-box;",
-		"}",
+		"* { margin: 0; padding: 0; box-sizing: border-box; } html { color-scheme: dark light; } body { min-height: 100vh; }",
 		"",
-		"html {",
-		"color-scheme: dark light;",
-		"}",
 		"",
-		"body {",
-		"min-height: 100vh;",
-		"}",
-		"",
-		"img, picture, svg, video {",
-		"display: block;",
-		"min-width: 100%;",
-		"}",
 	}),
+	i(1, ""),
 })
--- cs("me", {
---   t { "@media (min-width: " },
---   i { 1, "740px) {" },
---   t { "", " }" },
---   t { "}" },
--- })
+
 cs("box-shadow", {
 	t({ "box-shadow: 0 4px 12px 0 rgba(11, 18, 15, 0.97);", "" }),
 })
+
 cs("bs", {
 	t({ "box-shadow: 0 4px 12px 0 rgba(11, 18, 15, 0.97);", "" }),
 })
-
----------------- common css property ---------
-
-cs("co", { -- [CMD] multiline vim.cmd{{{
-	t({ "color: #" }),
-	i(1, ""),
-	t({ ";" }),
-})
-
--- cs("fo", { -- [CMD] multiline vim.cmd{{{
--- 	t({ "font-size: " }),
--- 	i(1, ""),
--- 	t({ ";" }),
--- })
-
--- cs("hei", { --
--- 	t({ "height: " }),
--- 	i(1, ""),
--- 	t({ "px;" }),
--- })
-
--- cs("wi", { --
--- 	t({ "width: " }),
--- 	i(1, ""),
--- 	t({ "px;" }),
--- })
-
--- cs("m", { --
--- 	t({ "margin: " }),
--- 	c(1, { t("0"), t("auto") }),
--- 	t({ ";" }),
--- })
-
--- cs("p", { --
--- 	t({ "padding: " }),
--- 	i(1, "0"),
--- 	t({ ";" }),
--- })
-
--- cs("di", { --
--- 	t({ "display: " }),
--- 	i(1, ""),
--- 	t({ ";" }),
--- })
-
--- cs("po", { --
--- 	t({ "position: " }),
--- 	i(1, ""),
--- 	t({ ";" }),
--- })
-
--- cs("ri", { --
--- 	t({ "right: " }),
--- 	i(1, ""),
--- 	t({ ";" }),
--- })
-
--- cs("le", { --
--- 	t({ "left: " }),
--- 	i(1, ""),
--- 	t({ ";" }),
--- })
-
--- cs("ali", { --
--- 	t({ "align-items: " }),
--- 	t("center"),
--- 	t({ ";", "" }),
--- 	i(1),
--- })
-
--- Tutorial Snippets go here --
--- local first = s("first", { t "hey, this is my first snippets<cr>" })
--- table.insert(snippets, first)
-
--- End Refactoring --
 
 return snippets, autosnippets

@@ -22,5 +22,5 @@ set softtabstop=2
 
 "================colorscheme===============
 hi Normal		guifg=#8099e6  			guibg=#1a1b26
-hi Comment	term=bold		ctermfg=Black		guifg=#1a1a1a
+hi Comment	term=bold		ctermfg=white		guifg=#4d6680
 hi Type	term=underline		ctermfg=Black	guifg=#5bdb00  gui=bold
