@@ -112,7 +112,6 @@ cs("not", { --
 	t({ "", "}" }),
 })
 
-
 cs("me", { --> media query
 	t({ "@media (min-width: " }),
 	i(1, "740px"),
@@ -126,11 +125,11 @@ cs("me", { --> media query
 
 cs("reset", {
 	t({
-		"* { margin: 0; padding: 0; box-sizing: border-box; } html { color-scheme: dark light; } body { min-height: 100vh; }",
+		"* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; } html { color-scheme: dark light; } body { min-height: 100vh; background: linear-gradient(260deg, #b75d62, #754d4f); }",
 		"",
 		"",
 	}),
-	i(1, ""),
+	t(""),
 })
 
 cs("box-shadow", {

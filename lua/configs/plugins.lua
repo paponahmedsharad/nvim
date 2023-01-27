@@ -11,14 +11,29 @@ vim.opt.rtp:prepend(lazypath)
 --─────────────────────── P L U G I N S ─────────────────────────────
 require("lazy").setup({
 	--> Colorscheme
-	{ "tanvirtin/monokai.nvim" },
+	{
+		"paponahmedsharad/bluloco.nvim",
+		lazy = false,
+		priority = 1000,
+		dependencies = { "rktjmp/lush.nvim" },
+		config = function()
+			-- your optional config goes here, see below.
+			require("bluloco").setup({
+				style = "dark",
+				transparent = false,
+				italics = true,
+				terminal = vim.fn.has("gui_running") == 1, -- bluoco colors are enabled in gui terminals per default.
+			})
+			vim.cmd([[colorscheme bluloco]])
+		end,
+	},
 	{ "lunarvim/Colorschemes" },
 	{ "folke/tokyonight.nvim",
-		lazy = false,                                       --> load this during startup
-		priority = 1000,                                    --> load this before all the other start plugins
-		config = function()
-			vim.cmd([[colorscheme tokyonight-night]])
-		end,
+		-- lazy = false,                                       --> load this during startup
+		-- priority = 1000,                                    --> load this before all the other start plugins
+		-- config = function()
+			-- vim.cmd([[colorscheme tokyonight-night]])
+		-- end,
 	},
 
 	--> Looks and feels

@@ -16,11 +16,14 @@ set softtabstop=2
 " nmap pj <Esc>yisvis<Space>/}p
 
 
+im <A-n> <Esc>}o
+
+
 " AUTO SAVE
 " autocmd TextChanged,TextChangedI <buffer> silent write
 
 
 "================colorscheme===============
-hi Normal		guifg=#8099e6  			guibg=#1a1b26
-hi Comment	term=bold		ctermfg=white		guifg=#4d6680
-hi Type	term=underline		ctermfg=Black	guifg=#5bdb00  gui=bold
+" hi Normal		guifg=#8099e6  			guibg=#1a1b26
+" hi Comment	term=bold		ctermfg=white		guifg=#4d6680
+" hi Type	term=underline		ctermfg=Black	guifg=#5bdb00  gui=bold

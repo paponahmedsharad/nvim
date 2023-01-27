@@ -18,7 +18,7 @@ autocmd TextChanged,TextChangedI <buffer> silent write
 
 
 "-----> trash
-nmap <A-m> V#:noh<cr>
+" nmap <A-m> V#:noh<cr>
 " im <A-m> <Esc>
 " noremap <expr> <A-m> ':s/\<'.expand('<cword>').'\>/"&"/<CR>:noh<cr>A'
 " im <expr> <C-g> '<Left><Esc>:s/\<'.expand('<cword>').'\>/"&"/<CR>:noh<cr>A'

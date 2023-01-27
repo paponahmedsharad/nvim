@@ -59,17 +59,17 @@ autocmd TextChanged,TextChangedI <buffer> silent write
 " endfunction
 " au BufWritePre * let b:save_time = localtime()
 
-hi Normal		guifg=cyan			guibg=#1a1b26
-hi Comment	term=bold		ctermfg=DarkCyan		guifg=#464650
-hi Constant	term=underline	ctermfg=Magenta		guifg=Magenta
-hi Special	term=bold		ctermfg=DarkMagenta	guifg=Red
-hi Identifier term=underline	cterm=bold			ctermfg=Red guifg=#aa4646
-hi Statement term=bold		ctermfg=Yellow gui=bold	guifg=#aa4444
-hi PreProc	term=underline	ctermfg=LightBlue	guifg=#ff80ff
-hi Type	term=underline		ctermfg=LightGreen	guifg=#60ff60 gui=bold
-hi Function	term=bold		ctermfg=White guifg=#80804d
-hi Repeat	term=underline	ctermfg=White		guifg=white
-hi Operator				ctermfg=Red			guifg=Red
-hi Ignore				ctermfg=black		guifg=bg
-hi Error	term=reverse ctermbg=Red ctermfg=White guibg=Red guifg=White
-hi Todo	term=standout ctermbg=Yellow ctermfg=Black guifg=Blue guibg=Yellow
+" hi Normal		guifg=cyan			guibg=#1a1b26
+" hi Comment	term=bold		ctermfg=DarkCyan		guifg=#464650
+" hi Constant	term=underline	ctermfg=Magenta		guifg=Magenta
+" hi Special	term=bold		ctermfg=DarkMagenta	guifg=Red
+" hi Identifier term=underline	cterm=bold			ctermfg=Red guifg=#aa4646
+" hi Statement term=bold		ctermfg=Yellow gui=bold	guifg=#aa4444
+" hi PreProc	term=underline	ctermfg=LightBlue	guifg=#ff80ff
+" hi Type	term=underline		ctermfg=LightGreen	guifg=#60ff60 gui=bold
+" hi Function	term=bold		ctermfg=White guifg=#80804d
+" hi Repeat	term=underline	ctermfg=White		guifg=white
+" hi Operator				ctermfg=Red			guifg=Red
+" hi Ignore				ctermfg=black		guifg=bg
+" hi Error	term=reverse ctermbg=Red ctermfg=White guibg=Red guifg=White
+" hi Todo	term=standout ctermbg=Yellow ctermfg=Black guifg=Blue guibg=Yellow
