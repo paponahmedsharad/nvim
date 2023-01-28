@@ -14,8 +14,8 @@ map("i", "<C-h>", "<Left>", opts)
 map("i", "<C-l>", "<Right>", opts)
 map("i", "<C-j>", "<Down>", opts)
 map("i", "<C-k>", "<Up>", opts)
--- map({ "i", "s", }, "<C-e>", "<Esc>A", opts)
-map({ "i", "s" }, "<leader>a", "<Esc>A", opts)
+map({ "i", "s", }, "<C-e>", "<Esc>A", opts)
+-- map({ "i", "s" }, "<M-e>", "<Esc>A", opts)
 
 --────────KeysForMovingInDifferentBuffer/Window──────
 map("n", "<C-h>", "<C-w>h", opts)
