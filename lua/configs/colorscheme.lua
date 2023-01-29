@@ -10,7 +10,7 @@ vim.cmd([[ hi LineNr guifg = '#233d46' ]]) --> numbers color
 vim.cmd([[ hi MatchParen guifg=#ffff00]]) --> MatchParen ('()') color
 vim.cmd([[ hi MatchParen ctermbg=blue guibg=#2f3c41]])
 vim.cmd([[ hi CursorLineNr   term=bold gui=bold guifg=#247c99]]) --> current line number color
-vim.cmd([[hi VertSplit guibg=bg guifg=#e6e600 ]]) --> current line number color
+-- vim.cmd([[hi VertSplit guibg=bg guifg=#e6e600 ]]) --> win spliting line color
 
 vim.cmd([[hi Folded guibg =#1a1c28 guifg=#4d4d54 ]]) --> fold line color
 -- vim.cmd [[hi Visual guibg =#30455c]] --> visual selection color

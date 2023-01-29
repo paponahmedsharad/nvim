@@ -1,7 +1,7 @@
 require("configs.keymaps")
 require("configs.options")
-require("configs.autocommand")
 require("configs.plugins")
+require("configs.autocommand")
 require("configs.colorscheme")
 require("configs.whichkey")
 require("configs.neotree")
