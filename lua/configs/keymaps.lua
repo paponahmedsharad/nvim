@@ -14,7 +14,7 @@ map("i", "<C-h>", "<Left>", opts)
 map("i", "<C-l>", "<Right>", opts)
 map("i", "<C-j>", "<Down>", opts)
 map("i", "<C-k>", "<Up>", opts)
-map({ "i", "s", }, "<C-e>", "<Esc>A", opts)
+map({ "i", "s" }, "<C-e>", "<Esc>A", opts)
 -- map({ "i", "s" }, "<M-e>", "<Esc>A", opts)
 
 --────────KeysForMovingInDifferentBuffer/Window──────
@@ -32,11 +32,15 @@ map({ "n" }, "<CR>", "<Cmd>call append(line('.'),repeat([''],v:count1))<CR>", op
 map({ "n" }, "<S-CR>", "<Cmd>call append(line('.') -1,repeat([''],v:count1))<CR>", opts)
 
 --─────────────── move around buffer ─────────────────
-map("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", opts) --> Goto next buffer
-map("n", "<S-h>", "<cmd>bprevious<CR>", opts)
-map("n", "<S-l>", "<cmd>bnext<CR>", opts)
-map({ "n", "i" }, "<A-i>", "<cmd>BufferLinePick<CR>")
-map("n", "<A-b>", "<cmd>BufferLinePickClose<CR>")
+--> tabby
+vim.api.nvim_set_keymap("n", "<leader>ta", ":$tabnew<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<Tab>", ":tabn<CR>", { noremap = true })
+--> bufferline
+-- map("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", opts) --> Goto next buffer
+-- map("n", "<S-h>", "<cmd>bprevious<CR>", opts)
+-- map("n", "<S-l>", "<cmd>bnext<CR>", opts)
+-- map({ "n", "i" }, "<A-i>", "<cmd>BufferLinePick<CR>")
+-- map("n", "<A-b>", "<cmd>BufferLinePickClose<CR>")
 
 --────────Activate cmd mode with df/fd ───────────────
 vim.keymap.set({ "n" }, "df", [[:]])
@@ -105,7 +109,15 @@ map("n", "<A-]>", "<cmd>lua vim.lsp.buf.rename()<CR>")
 -- map("n", "f", "<cmd>HopChar1<CR>")
 -- map("n", "F", "<cmd>HopChar1BC<CR>")
 map("n", ";", "<cmd>HopWord<CR>")
-map({ "n", "i" }, "<A-f>", "<cmd>HopChar2<CR>")
+-- map({ "n", "i" }, "<A-f>", "<cmd>HopChar2<CR>")
+
+--> leap
+vim.keymap.set(
+	{ "n", "i" },
+	"<A-f>",
+	"<cmd> lua require('leap').leap { target_windows = vim.tbl_filter( function (win) return vim.api.nvim_win_get_config(win).focusable end, vim.api.nvim_tabpage_list_wins(0))}<CR>",
+	opts
+)
 
 --> cmp
 map("i", "df", "<cmd>lua require('cmp').confirm({ select = true })<CR>")
@@ -156,3 +168,5 @@ vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 --> resize split
 map("n", "=", [[<cmd>vertical resize +5<cr>]])
 map("n", "-", [[<cmd>vertical resize -5<cr>]])
+map("n", "+", [[<cmd>horizontal resize +2<cr>]])
+map("n", "_", [[<cmd>horizontal resize -2<cr>]])

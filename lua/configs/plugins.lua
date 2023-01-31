@@ -1,8 +1,8 @@
---─────────────────────── Install Lazy ──────────────────────────────
+--─────────────────── I N S T A L L   L A Z Y ───────────────────────
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
-		"git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", -- latest stable release
+		"git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable",
 		lazypath,
 	})
 end
@@ -17,27 +17,20 @@ require("lazy").setup({
 		priority = 1000,
 		dependencies = { "rktjmp/lush.nvim" },
 		config = function()
-			-- your optional config goes here, see below.
 			require("bluloco").setup({
 				style = "dark",
 				transparent = false,
 				italics = true,
-				terminal = vim.fn.has("gui_running") == 1, -- bluoco colors are enabled in gui terminals per default.
+				terminal = vim.fn.has("gui_running") == 1,      --> bluoco colors are enabled in gui terminals per default.
 			})
 			vim.cmd([[colorscheme bluloco]])
 		end,
 	},
-	{ "lunarvim/Colorschemes" },
-	{ "folke/tokyonight.nvim",
-		-- lazy = false,                                       --> load this during startup
-		-- priority = 1000,                                    --> load this before all the other start plugins
-		-- config = function()
-			-- vim.cmd([[colorscheme tokyonight-night]])
-		-- end,
-	},
+	{ "folke/tokyonight.nvim", },
 
 	--> Looks and feels
-	{ "akinsho/nvim-bufferline.lua" },                    --> Bufferline/tabline(top bar)
+	-- { "akinsho/nvim-bufferline.lua" },                 --> Bufferline(top bar)
+  { 'nanozuki/tabby.nvim'},                             --> tabline != bufferline
 	{ "nvim-lualine/lualine.nvim" },                      --> Status Line (bottom bar)
 	{ "kyazdani42/nvim-web-devicons" },                   --> Icon set (bufferline dependency)
 	{ "nvim-lua/plenary.nvim" },                          --> dependency for many plugins
@@ -45,20 +38,20 @@ require("lazy").setup({
 	--> Telescope/search
 	{ "nvim-telescope/telescope.nvim" },                  --> Search file/dir
 	{ "nvim-telescope/telescope-file-browser.nvim" },     --> another file manager
-	{ "nvim-telescope/telescope-fzf-native.nvim" },
+	{ "nvim-telescope/telescope-fzf-native.nvim" },       --> fuzzy finder
 	{ "nvim-telescope/telescope-frecency.nvim" },         --> shows frequently use files
-	{ "nvim-telescope/telescope-media-files.nvim" },
+	{ "nvim-telescope/telescope-media-files.nvim" },      --> file browser
 	{ "kkharji/sqlite.lua" },                             --> Require For Telescope-frecency
   { "ThePrimeagen/harpoon" },                           --> kind of bookmarker for me
 	{ "Shatur/neovim-session-manager" },                  --> session manager
 	{ "nvim-telescope/telescope-ui-select.nvim", event = "VeryLazy" },
-	{ "ibhagwan/fzf-lua", config = function() require("fzf-lua") end, },
-	{ "phaazon/hop.nvim", branch = "v2", config = function() require("hop").setup({ keys = "etovxqpdygfblzhckisuran" }) end, },
+	{ "ibhagwan/fzf-lua", config = true, },
+	{ "phaazon/hop.nvim", branch = "v2", config = true, },
 
 	--> Feature
 	{ "nvim-neo-tree/neo-tree.nvim" },                    --> file browser
-  { 'echasnovski/mini.surround', version = false, config= function () require('mini.surround').setup() end,},
 	-- { "MunifTanjim/nui.nvim" },                        --> required for neotree(UI Component Library for Neovim)
+	{ "ggandor/leap.nvim"},                               --> better /search/motion
 	{ "folke/which-key.nvim" },                           --> Popup keymaps
 	{ "numToStr/Comment.nvim", event = "VeryLazy" },      --> Toggle Comment
 	{ "akinsho/toggleterm.nvim" },                        --> Terminal inside nvim
@@ -73,7 +66,9 @@ require("lazy").setup({
 	{ "mg979/vim-visual-multi", event = "VeryLazy" },     --> Malti selection
 	{ "norcalli/nvim-colorizer.lua", event = "VeryLazy" },--> Color Hightlight(rgb, hex etc)
 	{ "lukas-reineke/indent-blankline.nvim", event = "VeryLazy" }, --> Indentation
+  { 'echasnovski/mini.surround', version = false, config= function () require('mini.surround').setup() end,},
 	{ "lewis6991/gitsigns.nvim", event = "VeryLazy", config = function() require("gitsigns").setup() end, },
+	{ "kdheepak/lazygit.nvim", config = function() vim.cmd[[let g:lazygit_floating_window_scaling_factor = 1.0]] end, },
 
 	---> LSP/CMP
 	{ "neovim/nvim-lspconfig" },                          --> Nvim Lsp
@@ -104,12 +99,7 @@ require("lazy").setup({
 		},
 	},
 
-	--> Less important plugin
-	{ "elkowar/yuck.vim", event = "VeryLazy" },            --> Syntax hightlight for ex.yuck file
-	{ "rcarriga/nvim-notify" },
-
 	--> Testing stage
-	{ "kdheepak/lazygit.nvim" },
 	{
 		"phaazon/mind.nvim",
 		event = "VeryLazy",
@@ -118,8 +108,10 @@ require("lazy").setup({
 			require("mind").setup()
 		end,
 	},
-	-- { dir = "~/repo/Colorschemes" },
-	-- { dir = "~/repo/melange" },
+
+	--> Less important/not really needed plugin
+	-- { "elkowar/yuck.vim", event = "VeryLazy" },            --> Syntax hightlight for ex.yuck file
+	-- { "rcarriga/nvim-notify" },
 
 --───────────────────────── E N D ──────────────────────────────────
 })
