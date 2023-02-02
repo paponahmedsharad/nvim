@@ -56,7 +56,6 @@ require("lazy").setup({
 	{ "numToStr/Comment.nvim", event = "VeryLazy" },      --> Toggle Comment
 	{ "akinsho/toggleterm.nvim" },                        --> Terminal inside nvim
 	{ "nvim-treesitter/nvim-treesitter" },                --> Syntax Hightlight
-	{ "nvim-treesitter/nvim-treesitter-textobjects" },
 	{ "p00f/nvim-ts-rainbow", event = "VeryLazy" },       --> Parenthesis highlighting
 	{ "folke/twilight.nvim", event = "VeryLazy" },        --> Foucs
 	{ "windwp/nvim-autopairs" },                          --> Autopairs

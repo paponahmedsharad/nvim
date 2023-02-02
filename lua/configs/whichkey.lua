@@ -52,17 +52,16 @@ local opts = {
 }
 
 --──────────────────── MAPPINGS ────────────────────────
--- vim.g.mapleader = " "
-
 local mappings = {
-	["d"] = { "<cmd>Dashboard<CR>", "Dashboard" },
 	["e"] = { "<cmd>Neotree toggle<CR>", "Explorer" },
 	["w"] = { "<cmd>w!<CR>", "Save" },
 	-- ["/"] = { "<cmd>CommentToggle<CR>", "Comment" },
-	-- ["q"] = { "<cmd>q!<CR>", "Quit" },
-	["c"] = { "<cmd>bdelete!<CR>", "Close Buffer" },
-	["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-	["nn"] = { "<cmd>DashboardNewFile<CR>", "New File" },
+	["a"] = { "<cmd>tabnew<CR>", "New Tab" },
+	["v"] = { "<cmd>vsplit<CR>", "Vertical split" },
+	["h"] = { "<cmd>split<CR>", "Horizontal split" },
+	["c"] = { "<cmd>close<CR>", "Close Window" },
+	["d"] = { "<cmd>bdelete!<CR>", "Close Buffer" },
+	["r"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
 	--────────────────── telescope ────────────────────────
 	f = {
 		name = "Find Files",
@@ -89,7 +88,7 @@ local mappings = {
 	--────────────────── lsp ────────────────────────
 	l = {
 		name = "LSP",
-		g = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Lsp definition" },
+		d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Lsp definition" },
 		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
 		R = { "<cmd>lua vim.lsp.buf.references()<cr>", "Lsp references" },
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
@@ -106,10 +105,6 @@ local mappings = {
 		name = "Search",
 		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
 		c = { "<cmd>FzfLua colorschemes<cr>", "Colorscheme" },
-		-- c = {
-		--   "<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>",
-		--   "Colorscheme Preview",
-		-- },
 		s = { "<cmd>SessionManager save_current_session<cr>", "Save session" },
 		l = { "<cmd>SessionManager load_session<cr>", "Load session" },
 		-- ll = { "<cmd>SessionManager load_last_session<cr>", "Last session" },
@@ -137,6 +132,8 @@ local mappings = {
 		-- z = { ":ZenMode<cr>", "Toggle Zen Mode" },
 		t = { ":Twilight<cr>", "Toggle Twilight" },
 		b = { ":IndentBlanklineToggle<cr>", "Toggle Blankline" },
+		h = { "<cmd>lua vim.o.ls=0<CR>", "Hide StatusBar" },
+		s = { "<cmd>lua vim.o.ls=3<CR>", "Shoe StatusBar" },
 	},
 	--────────────────── ZenMode ────────────────────────
 	n = {
