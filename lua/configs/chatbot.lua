@@ -9,8 +9,8 @@ require("chatgpt").setup({
 		relative = "editor",
 		position = "50%",
 		size = {
-			height = "90%",
-			width = "90%",
+			height = "95%",
+			width = "95%",
 		},
 	},
 	settings_window = {

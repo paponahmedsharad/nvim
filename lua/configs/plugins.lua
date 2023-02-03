@@ -21,7 +21,7 @@ require("lazy").setup({
 				style = "dark",
 				transparent = false,
 				italics = true,
-				terminal = vim.fn.has("gui_running") == 1,                 --> bluoco colors are enabled in gui terminals per default.
+				-- terminal = vim.fn.has("gui_running") == 1,                 --> bluoco colors are enabled in gui terminals per default.
 			})
 			vim.cmd([[colorscheme bluloco]])
 		end,
@@ -29,7 +29,7 @@ require("lazy").setup({
 	{ "folke/tokyonight.nvim", },
 
 	--> Looks and feels
-  { 'nanozuki/tabby.nvim'},                                        --> tabline != bufferline
+  { 'nanozuki/tabby.nvim', event = "VeryLazy"},                    --> tabline != bufferline
 	{ "nvim-lualine/lualine.nvim" },                                 --> Status Line (bottom bar)
 	{ "kyazdani42/nvim-web-devicons" },                              --> Icon set (bufferline dependency)
 	{ "nvim-lua/plenary.nvim" },                                     --> dependency for many plugins
@@ -40,12 +40,18 @@ require("lazy").setup({
 	{ "nvim-telescope/telescope-fzf-native.nvim" },                  --> fuzzy finder
 	{ "nvim-telescope/telescope-frecency.nvim" },                    --> shows frequently use files
 	{ "nvim-telescope/telescope-media-files.nvim" },                 --> file browser
+	{ "nvim-telescope/telescope-ui-select.nvim", event = "VeryLazy" },
 	{ "kkharji/sqlite.lua" },                                        --> Require For Telescope-frecency
   { "ThePrimeagen/harpoon" },                                      --> kind of bookmarker for me
-	{ "Shatur/neovim-session-manager" },                             --> session manager
-	{ "nvim-telescope/telescope-ui-select.nvim", event = "VeryLazy" },
-	{ "ibhagwan/fzf-lua", config = true, event="VeryLazy" },
-	{ "phaazon/hop.nvim", branch = "v2", config = true, },
+	{ "ibhagwan/fzf-lua", config = true, event="VeryLazy" },         --> fuzzy finder
+	{ "Shatur/neovim-session-manager",                               --> session manager
+		config = function()
+			require("session_manager").setup({
+        autoload_mode = require("session_manager.config").AutoloadMode.Disabled,
+        autosave_last_session = false,
+			})
+		end,
+  },
 
 	--> Feature
 	-- { "MunifTanjim/nui.nvim" },                                   --> required for neotree(UI Component Library for Neovim)
@@ -59,30 +65,30 @@ require("lazy").setup({
 	{ "folke/twilight.nvim", event = "VeryLazy" },                   --> Foucs
 	{ "windwp/nvim-autopairs" },                                     --> Autopairs
 	{ "nvim-lua/popup.nvim" },                                       --> Popup api
-	{ "uga-rosa/ccc.nvim", event = "VeryLazy" },                     --> Color picker
-	{ "frabjous/knap" },                                             --> Auto-Previewer for latex
+	{ "uga-rosa/ccc.nvim", config= true, event = "VeryLazy" },       --> Color picker
+	{ "frabjous/knap", event = "VeryLazy" },                         --> Auto-Previewer for latex
 	{ "mg979/vim-visual-multi", event = "VeryLazy" },                --> Malti selection
-	{ "norcalli/nvim-colorizer.lua", event = "VeryLazy", config= true},           --> Color Hightlight(rgb, hex etc)
+	{ "norcalli/nvim-colorizer.lua", event = "VeryLazy"},            --> Color Hightlight(rgb, hex etc)
 	{ "lukas-reineke/indent-blankline.nvim", event = "VeryLazy" },   --> Indentation
-	{ "lewis6991/gitsigns.nvim", event = "VeryLazy", config = true}, --> Shows git sign on left side
-  { 'echasnovski/mini.surround', version = false, config= function () require('mini.surround').setup() end,},
+	{ "lewis6991/gitsigns.nvim", config = true, event = "VeryLazy"}, --> Shows git sign on left side
+  { 'echasnovski/mini.surround', version = false, config= function () require('mini.surround').setup() end, event = "VeryLazy"},
 	{ "kdheepak/lazygit.nvim", config = function() vim.cmd[[let g:lazygit_floating_window_scaling_factor = 1.0]] end, },
 
 	--> formatter
-	{ "lukas-reineke/lsp-format.nvim" },                             --> Formmat support from lsp server
-	{ "mhartington/formatter.nvim" },                                --> File Formatter engine
-	{ "MunifTanjim/prettier.nvim" },                                 --> Formatter
+	{ "lukas-reineke/lsp-format.nvim", event = "VeryLazy" },         --> Formmat support from lsp server
+	{ "mhartington/formatter.nvim", event = "VeryLazy" },            --> File Formatter engine
+	{ "MunifTanjim/prettier.nvim", event = "VeryLazy" },             --> Formatter
 
 	---> LSP/CMP
-	{ "neovim/nvim-lspconfig" },                                     --> Nvim Lsp
-	{ "williamboman/mason.nvim" },                                   --> Lsp server installer
+	{ "neovim/nvim-lspconfig", event = "VeryLazy" },                 --> Nvim Lsp
+	{ "williamboman/mason.nvim", event = "VeryLazy" },               --> Lsp server installer
 	{ "williamboman/mason-lspconfig.nvim", lazy = true },            --> Connect mason with nvim lsp
 	{ "hrsh7th/cmp-nvim-lsp" },                                      --> LSP AutoCompletion
 	{ "hrsh7th/cmp-buffer", event = "VeryLazy" },                    --> AutoCompletion from buffer
-	{ "hrsh7th/cmp-path" },
+	{ "hrsh7th/cmp-path" },                                          --> AutoCompletion fot path
 	{ "hrsh7th/cmp-cmdline" },                                       --> AutoCompletion from command
 	{ "hrsh7th/nvim-cmp" },                                          --> Auto completion engine
-  { "mattn/emmet-vim" },                                           --> Emmet for html and css
+  { "mattn/emmet-vim", event = "VeryLazy", },                      --> Emmet for html and css
 	{	"dcampos/nvim-snippy",                                         --> Snippets engine
 		dependencies = {
 			"dcampos/cmp-snippy",
@@ -99,7 +105,6 @@ require("lazy").setup({
 			})
 		end,
 	},
-
 
 	--> ChatGPT
 	{
@@ -120,6 +125,5 @@ require("lazy").setup({
 			require("mind").setup()
 		end,
 	},
-
 --───────────────────────── E N D ──────────────────────────────────
 })
