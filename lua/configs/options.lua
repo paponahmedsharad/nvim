@@ -23,8 +23,9 @@ local options = {
 	smartcase = true,
 	-- undofile = true, --> enable persistent undo
 	mouse = "nv", --> mouse only for normal and visual mode
+	matchpairs = "(:),{:},[:]",
 
-	scrolloff = 6,
+	scrolloff = 4,
 	sidescrolloff = 2,
 	updatetime = 300, --> faster completion (4000ms default)
 	timeoutlen = 150, --> time to wait for a mapped sequence to complete (in milliseconds)

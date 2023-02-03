@@ -66,6 +66,8 @@ local mappings = {
 	f = {
 		name = "Find Files",
 		f = { "<cmd>Telescope find_files<cr>", "Find Files" },
+		v = { "<cmd>botright vsplit | Telescope find_files<cr>", "Find Files vp" },
+		h = { "<cmd>split | Telescope find_files<cr>", "Find Files sp" },
 		g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
 		b = { "<cmd>Telescope buffers<cr>", "Buffers" },
 		e = { "<cmd>Telescope file_browser path=%:p:h<CR>", "Explorer" },
@@ -89,6 +91,7 @@ local mappings = {
 	l = {
 		name = "LSP",
 		d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Lsp definition" },
+		v = { "<cmd>botright vsplit | lua vim.lsp.buf.definition()<cr>", "Definition vp" },
 		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
 		R = { "<cmd>lua vim.lsp.buf.references()<cr>", "Lsp references" },
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },

@@ -34,6 +34,7 @@ map({ "n" }, "<CR>", 'o<Esc>0"_D,v:count1', opts)
 --> bufferline
 map("n", "<S-h>", "<cmd>bprevious<CR>", opts)
 map("n", "<S-l>", "<cmd>bnext<CR>", opts)
+map("n", "<Tab>", "<cmd>tabnext<CR>", opts)
 
 --────────Activate cmd mode with df/fd ───────────────
 map({ "n" }, "df", [[:]])
@@ -55,6 +56,7 @@ map("x", "J", ":move '>+1<CR>gv-gv", opts)
 map("n", "<Down>", "<cmd>split<CR>", opts)
 map("n", "<Left>", "<cmd>vsplit<CR>", opts)
 map("n", "<Right>", "<cmd>vsplit<CR>", opts)
+
 -- Better paste
 map("v", "p", '"_dP', opts)
 
@@ -64,6 +66,17 @@ map({ "n" }, "yp", [[<Esc>yis}p]])
 
 --────────── A fancy box around the text ────────────────
 map("n", "<leader>1", ":.!toilet  -w 200 -f term -F border<CR>", opts)
+
+--> Direct changes into the black hole register.
+map("n", "c", '"_c')
+map("n", "C", '"_C')
+
+--> Insert from the clipboard register.
+--> Note, use Control-q for virtual insertion (e.g insert a real tab).
+map("i", "<C-v>", "<C-r>+")
+
+--> Clone paragraph.
+map("n", "cp", "yap<S-}>p")
 
 --───────────── keymaps for some plugin ─────────────────
 --> Harpoon (leader a and m)
@@ -97,10 +110,8 @@ map("n", "hg", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 map("n", "<A-d>", "<cmd>lua vim.lsp.buf.definition()<CR>")
 
 --> hop
--- map("n", "f", "<cmd>HopChar1<CR>")
--- map("n", "F", "<cmd>HopChar1BC<CR>")
 map("n", ";", "<cmd>HopWord<CR>")
--- map({ "n", "i" }, "<A-f>", "<cmd>HopChar2<CR>")
+-- map("n", "f", "<cmd>HopChar1<CR>")
 
 --> leap
 vim.keymap.set(
@@ -113,6 +124,10 @@ vim.keymap.set(
 --> cmp
 map("i", "df", "<cmd>lua require('cmp').confirm({ select = true })<CR>")
 map("i", "fd", "<cmd>lua require('cmp').confirm({ select = true })<CR>")
+
+--> Emmet
+map({ "i" }, "<A-;>", "<c-o>:Emmet ")
+map({ "n" }, "<A-;>", ":Emmet ")
 
 vim.cmd([[
 "--> select the last item from lsp/cmp
@@ -128,7 +143,7 @@ im <A-i> <c-o>^
 im <A-a> <c-o>A
 ]])
 
------------------------> extra cinfigaration for neovide ------------>
+------------------> extra cinfigaration for neovide ------------>
 --> paste in command line
 -- map("c", "<C-v>", "<C-r>+", opts)
 

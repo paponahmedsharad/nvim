@@ -5,7 +5,7 @@ local servers = {
 	"tsserver",
 	"pyright",
 	"quick_lint_js",
-	"emmet_ls",
+	-- "emmet_ls",
 }
 
 local settings = {
