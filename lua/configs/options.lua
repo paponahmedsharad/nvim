@@ -4,7 +4,7 @@
 local options = {
 	ttyfast = true,
 	termguicolors = true,
-	guifont = { "AestheticIosevka Nerd Font Mono", ":h11" },
+	guifont = { "AestheticIosevka Nerd Font Mono", ":h10" },
 	clipboard = "unnamedplus", --> system clipboard
 	backup = false, -- creates a backup file
 	number = true, --> shows number
@@ -97,3 +97,4 @@ vim.opt.whichwrap:append("<,>,[,],h,l") -- keys allowed to move to the previous/
 vim.opt.iskeyword:append("-") -- treats words with `-` as single words
 vim.opt.formatoptions:remove({ "c", "r", "o" }) -- This is a sequence of letters which describes how automatic formatting is to be done
 vim.opt.fillchars = { eob = " " }
+vim.opt.fillchars:append("fold: ")

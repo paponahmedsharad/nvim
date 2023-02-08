@@ -1,133 +1,85 @@
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
+local nosilent = { noremap = true, silent = true }
 
 --> set leader key
 map("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " " --> space is the leader key
+vim.g.mapleader = " " --> leader key
 
---────── <Esc> with jk/kj FromDifferentMode ───────────
+--> Escape from different modes
 map({ "i", "c", "v", "s" }, "jk", [[<Esc>]])
 map({ "i", "c", "v", "s" }, "kj", [[<Esc>]])
 
---─────────────MotionKeys ForInsertMode──────────────
+--> motion keys for insert mode
 map("i", "<C-h>", "<Left>", opts)
 map("i", "<C-l>", "<Right>", opts)
 map("i", "<C-j>", "<Down>", opts)
 map("i", "<C-k>", "<Up>", opts)
-map({ "i", "s" }, "<C-e>", "<Esc>A", opts)
--- map({ "i", "s" }, "<M-e>", "<Esc>A", opts)
 
---────────KeysForMovingInDifferentBuffer/Window──────
+--> move between splits
 map("n", "<C-h>", "<C-w>h", opts)
 map("n", "<C-l>", "<C-w>l", opts)
 map("n", "<C-j>", "<C-w>j", opts)
 map("n", "<C-k>", "<C-w>k", opts)
 
---─────────────── Inser NewLine ────────────────────
-map({ "i", "s", "n" }, "fj", "<Esc>o", opts)
-map({ "i", "s", "n" }, "jf", "<Esc>o", opts)
--- map({ "n" }, "<CR>", "<Cmd>call append(line('.'),repeat([''],v:count1))<CR>", opts)
-map({ "n" }, "<S-CR>", "<Cmd>call append(line('.') -1,repeat([''],v:count1))<CR>", opts)
-map({ "n" }, "<CR>", 'o<Esc>0"_D,v:count1', opts)
+--> resize split
+map("n", "=", [[<cmd>vertical resize +5<cr>]])
+map("n", "-", [[<cmd>vertical resize -5<cr>]])
+map("n", "+", [[<cmd>horizontal resize +2<cr>]])
+map("n", "_", [[<cmd>horizontal resize -2<cr>]])
 
---─────────────── move around buffer ─────────────────
---> bufferline
+--> Move to different buffers
 map("n", "<S-h>", "<cmd>bprevious<CR>", opts)
 map("n", "<S-l>", "<cmd>bnext<CR>", opts)
 map("n", "<Tab>", "<cmd>tabnext<CR>", opts)
 
---────────Activate cmd mode with df/fd ───────────────
+--> insert a new line
+map({ "i", "s", "n" }, "fj", "<Esc>o", opts)
+map({ "i", "s", "n" }, "jf", "<Esc>o", opts)
+map({ "n" }, "<CR>", 'o<Esc>0"_D,v:count1', opts)
+map({ "n" }, "<S-CR>", "<Cmd>call append(line('.') -1,repeat([''],v:count1))<CR>", opts)
+-- map({ "n" }, "<CR>", "<Cmd>call append(line('.'),repeat([''],v:count1))<CR>", opts)
+
+--> command mode with df and fd
 map({ "n" }, "df", [[:]])
 map({ "n" }, "fd", [[:]])
 
---─────────────── General keymaps ───────────────────────
-map("n", "<leader>q", "<cmd>qall!<CR>", { noremap = true })
-map({ "n" }, "<leader>w", "<cmd>w<CR>", { noremap = true, silent = false }) --> save
-map({ "n", "i" }, "<C-s>", "<cmd>w<CR>", { noremap = true, silent = false }) --> save
-map("n", "ff", ":Telescope find_files<CR>", opts) --> Find files
-map("n", "[", ":Telescope oldfiles<CR>", opts) --> Find recent files
+--> quit and save
+map("n", "<leader>q", "<cmd>qall!<CR>", nosilent) --> quit all
+map({ "n" }, "<leader>w", "<cmd>w<CR>", nosilent) --> save
+map({ "n", "i" }, "<C-s>", "<cmd>w<CR>", nosilent) --> save
 
---─────────────── Move the line ───────────────────────
+--> move the line up/down left/right
 map("v", "H", "<gv", opts)
 map("v", "L", ">gv", opts)
 map("x", "K", ":move '<-2<CR>gv-gv", opts)
 map("x", "J", ":move '>+1<CR>gv-gv", opts)
 
-map("n", "<Down>", "<cmd>split<CR>", opts)
-map("n", "<Left>", "<cmd>vsplit<CR>", opts)
-map("n", "<Right>", "<cmd>vsplit<CR>", opts)
+--> split the window
+map("n", "<S-Down>", "<cmd>split<CR>", opts)
+map("n", "<S-Left>", "<cmd>vsplit<CR>", opts)
+map("n", "<S-Right>", "<cmd>vsplit<CR>", opts)
 
--- Better paste
+--> Better paste
 map("v", "p", '"_dP', opts)
 
---──────── CopyCurrentParaAndPasteItBelow────────────────
-map({ "n" }, "py", [[<Esc>yis}p]])
-map({ "n" }, "yp", [[<Esc>yis}p]])
-
---────────── A fancy box around the text ────────────────
-map("n", "<leader>1", ":.!toilet  -w 200 -f term -F border<CR>", opts)
+--> paste from clipboard in insert mode
+map("i", "<C-v>", "<C-r>+")
 
 --> Direct changes into the black hole register.
 map("n", "c", '"_c')
 map("n", "C", '"_C')
 
---> Insert from the clipboard register.
---> Note, use Control-q for virtual insertion (e.g insert a real tab).
-map("i", "<C-v>", "<C-r>+")
-
 --> Clone paragraph.
 map("n", "cp", "yap<S-}>p")
-
---───────────── keymaps for some plugin ─────────────────
---> Harpoon (leader a and m)
-map("n", "<leader>aa", ':lua require("harpoon.mark").add_file()<CR>', opts)
-map("n", "<leader>m", ':lua require("harpoon.ui").toggle_quick_menu()<CR>', opts)
-
---> mapping for colorpicker ccc (<c-p>)
-vim.keymap.set({ "i", "n" }, "<C-p>", [[<Esc>:CccPick<cr>]])
-
---> luaSnip
-map("i", "<A-n>", "<Plug>luasnip-next-choice", opts) -- todo
-map("n", "<A-g>", "<cmd>ChatGPT<cr>", opts)
-
---> fzf registers
-map({ "n", "i" }, "<A-c>", "<cmd>FzfLua registers<CR>", opts)
-
---> telescope frecency
-vim.api.nvim_set_keymap(
-	"n",
-	"  ",
-	"<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>",
-	{ noremap = true, silent = true }
-)
+-- map({ "n" }, "py", [[<Esc>yis}p]])
+-- map({ "n" }, "yp", [[<Esc>yis}p]])
 
 --> replace the word under the cursor
 map({ "n", "i" }, "<A-r>", [[<Esc>:%s/\<<C-r><C-w>\>/]])
 
---> LSP
-map("n", "gh", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-map("n", "hg", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-map("n", "<A-d>", "<cmd>lua vim.lsp.buf.definition()<CR>")
-
---> hop
-map("n", ";", "<cmd>HopWord<CR>")
--- map("n", "f", "<cmd>HopChar1<CR>")
-
---> leap
-vim.keymap.set(
-	{ "n", "i" },
-	"<A-f>",
-	"<cmd> lua require('leap').leap { target_windows = vim.tbl_filter( function (win) return vim.api.nvim_win_get_config(win).focusable end, vim.api.nvim_tabpage_list_wins(0))}<CR>",
-	opts
-)
-
---> cmp
-map("i", "df", "<cmd>lua require('cmp').confirm({ select = true })<CR>")
-map("i", "fd", "<cmd>lua require('cmp').confirm({ select = true })<CR>")
-
---> Emmet
-map({ "i" }, "<A-;>", "<c-o>:Emmet ")
-map({ "n" }, "<A-;>", ":Emmet ")
+--> a fancy box around the text
+map("n", "<leader>1", ":.!toilet  -w 200 -f term -F border<CR>", opts)
 
 vim.cmd([[
 "--> select the last item from lsp/cmp
@@ -143,16 +95,70 @@ im <A-i> <c-o>^
 im <A-a> <c-o>A
 ]])
 
-------------------> extra cinfigaration for neovide ------------>
---> paste in command line
--- map("c", "<C-v>", "<C-r>+", opts)
+--> vertical selection mode
+map({ "i" }, "<c-i>", "<c-o><c-v>")
 
--------------------------------> testing ------------------------>
 --> Change Letter Case
 map("v", "<C-v>", [[<cmd>s#\v(\w)(\S*)#\u\1\L\2#g | noh<CR><Esc>]])
 -- map("v", "<C-v>", [[<cmd>s/\<\(\w\)\(\w*\)\>/\u\1\L\2/g<CR><cmd>noh<CR><ESC>]])
 
---> A FUNCTION TO CHANGE VISUALL SELECT TEXT "CASE" with <S-~>
+--──────────────────────────────────────────────────────────────────────
+-->                        Plugins keymaps
+--──────────────────────────────────────────────────────────────────────
+--> telescope
+map("n", "ff", ":Telescope find_files<CR>", opts) --> Find files
+map("n", "\\", ":Telescope oldfiles<CR>", opts) --> Find recent files
+
+--> Harpoon
+map("n", "<leader>aa", ':lua require("harpoon.mark").add_file()<CR>', opts)
+map("n", "<leader>m", ':lua require("harpoon.ui").toggle_quick_menu()<CR>', opts)
+
+--> colorpicker
+vim.keymap.set({ "i", "n" }, "<C-p>", [[<Esc>:CccPick<cr>]])
+
+--> luaSnip
+-- map("i", "<A-n>", "<Plug>luasnip-next-choice", opts) -- todo
+
+--> ChatGPT
+map("n", "<A-g>", "<cmd>ChatGPT<cr>", opts)
+
+--> fzf registers
+map({ "n", "i" }, "<A-c>", "<cmd>FzfLua registers<CR>", opts)
+
+--> telescope frecency
+vim.api.nvim_set_keymap(
+	"n",
+	"  ",
+	"<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>",
+	{ noremap = true, silent = true }
+)
+
+--> LSP
+map("n", "gh", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+map("n", "hg", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+map("n", "<A-d>", "<cmd>lua vim.lsp.buf.definition()<CR>")
+
+--> hop
+-- map("n", ";", "<cmd>HopWord<CR>")
+-- map("n", "f", "<cmd>HopChar1<CR>")
+
+--> leap
+vim.keymap.set(
+	{ "n", "i", "v" },
+	"<A-f>",
+	"<cmd> lua require('leap').leap { target_windows = vim.tbl_filter( function (win) return vim.api.nvim_win_get_config(win).focusable end, vim.api.nvim_tabpage_list_wins(0))}<CR>"
+	-- opts
+)
+
+--> cmp
+map("i", "df", "<cmd>lua require('cmp').confirm({ select = true })<CR>")
+map("i", "fd", "<cmd>lua require('cmp').confirm({ select = true })<CR>")
+
+--> Emmet
+map({ "i" }, "<A-;>", "<c-o>:Emmet ")
+map({ "n" }, "<A-;>", ":Emmet ")
+
+--> A FUNCTION TO CHANGE VISUALLY SELECT TEXT "CASE" with <S-~>
 vim.cmd([[
 function! TwiddleCase(str)
   if a:str ==# toupper(a:str)
@@ -166,9 +172,3 @@ function! TwiddleCase(str)
 endfunction
 vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 ]])
-
---> resize split
-map("n", "=", [[<cmd>vertical resize +5<cr>]])
-map("n", "-", [[<cmd>vertical resize -5<cr>]])
-map("n", "+", [[<cmd>horizontal resize +2<cr>]])
-map("n", "_", [[<cmd>horizontal resize -2<cr>]])
