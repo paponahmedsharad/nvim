@@ -4,7 +4,7 @@
 local options = {
 	ttyfast = true,
 	termguicolors = true,
-	guifont = { "AestheticIosevka Nerd Font Mono", ":h10" },
+	-- guifont = { "AestheticIosevka Nerd Font Mono", ":h10" },
 	clipboard = "unnamedplus", --> system clipboard
 	backup = false, -- creates a backup file
 	number = true, --> shows number
@@ -92,9 +92,32 @@ for _, plugin in ipairs(builtins) do
 end
 
 --> testing-stage
-vim.opt.shortmess:append("c") -- hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
-vim.opt.whichwrap:append("<,>,[,],h,l") -- keys allowed to move to the previous/next line when the beginning/end of line is reached
-vim.opt.iskeyword:append("-") -- treats words with `-` as single words
+vim.opt.shortmess:append("c") --> hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
+vim.opt.whichwrap:append("<,>,[,],h,l") --> keys allowed to move to the previous/next line when the beginning/end of line is reached
+vim.opt.iskeyword:append({ "-" }) --> treats words with `-` as single words
 vim.opt.formatoptions:remove({ "c", "r", "o" }) -- This is a sequence of letters which describes how automatic formatting is to be done
-vim.opt.fillchars = { eob = " " }
-vim.opt.fillchars:append("fold: ")
+vim.opt.fillchars = { eob = " " } --> hide ~ at the end of the buffer
+vim.opt.fillchars:append("fold: ") --> hide the fold marker
+
+-----------------> options for neovide --------------->
+if vim.g.neovide then
+	vim.opt.guifont = { "AestheticIosevka Nerd Font Mono", ":h10" }
+	vim.g.neovide_transparency = 0.96
+	vim.g.neovide_floating_blur_amount_x = 2.0
+	vim.g.neovide_floating_blur_amount_y = 2.0
+	vim.g.neovide_confirm_quit = false
+	vim.g.neovide_hide_mouse_when_typing = true
+	-- vim.g.neovide_no_idle = true
+
+	--> the the scale factor
+	vim.g.neovide_scale_factor = 1.0
+	local change_scale_factor = function(delta)
+		vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+	end
+	vim.keymap.set("n", "<C-=>", function()
+		change_scale_factor(1.25)
+	end)
+	vim.keymap.set("n", "<C-->", function()
+		change_scale_factor(1 / 1.25)
+	end)
+end

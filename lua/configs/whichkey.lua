@@ -14,7 +14,7 @@ local setup = {
 			text_objects = true,
 			windows = true, -- default bindings on <c-w>
 			nav = false, -- misc bindings to work with windows
-			z = false, -- bindings for folds, spelling and others prefixed with z
+			z = true, -- bindings for folds, spelling and others prefixed with z
 			g = true, -- bindings for prefixed with g
 		},
 	},
@@ -55,13 +55,34 @@ local opts = {
 local mappings = {
 	["e"] = { "<cmd>Neotree toggle<CR>", "Explorer" },
 	["w"] = { "<cmd>w!<CR>", "Save" },
-	-- ["/"] = { "<cmd>CommentToggle<CR>", "Comment" },
 	["a"] = { "<cmd>tabnew<CR>", "New Tab" },
-	["v"] = { "<cmd>vsplit<CR>", "Vertical split" },
-	["h"] = { "<cmd>split<CR>", "Horizontal split" },
 	["c"] = { "<cmd>close<CR>", "Close Window" },
 	["d"] = { "<cmd>bdelete!<CR>", "Close Buffer" },
-	["r"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+	["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+	--─────────────────── Note ─────────────────────────
+	n = {
+		name = "Note",
+		m = { ":MindOpenMain<cr>", "Mind main" },
+		p = { ":MindOpenProject<cr>", "Mind Projects" },
+		c = { ":MindClose<cr>", "Mind Close" },
+	},
+	--─────────────────── Options ──────────────────────
+	o = {
+		name = "Options",
+		s = { "<cmd>set spell!<cr>", "Toggle spell" },
+		n = { "<cmd>set nu!<cr>", "Toggle number" },
+		c = { "<cmd>set signcolumn=no<cr>", "Toggle signcolumn" },
+		z = { "<cmd>set signcolumn=no nu! |IndentBlanklineToggle<cr>", "ZenMode" },
+	},
+	--───────────────── ZenMode ────────────────────────
+	z = {
+		name = "Focus",
+		-- z = { ":ZenMode<cr>", "Toggle Zen Mode" },
+		t = { ":Twilight<cr>", "Toggle Twilight" },
+		b = { ":IndentBlanklineToggle<cr>", "Toggle Blankline" },
+		h = { "<cmd>lua vim.o.ls=0<CR>", "Hide StatusBar" },
+		s = { "<cmd>lua vim.o.ls=3<CR>", "Shoe StatusBar" },
+	},
 	--────────────────── telescope ────────────────────────
 	f = {
 		name = "Find Files",
@@ -110,7 +131,9 @@ local mappings = {
 		c = { "<cmd>FzfLua colorschemes<cr>", "Colorscheme" },
 		s = { "<cmd>SessionManager save_current_session<cr>", "Save session" },
 		l = { "<cmd>SessionManager load_session<cr>", "Load session" },
-		h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
+		-- h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
+		v = { "<cmd>vsplit<CR>", "Vertical split" },
+		h = { "<cmd>split<CR>", "Horizontal split" },
 		M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
 		R = { "<cmd>Telescope registers<cr>", "Registers" },
 		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
@@ -126,26 +149,8 @@ local mappings = {
 		h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
 		v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
 		c = { "<cmd>TermExec cmd='clang % && ./a.out'<cr>", "Clang compile" },
-		r = { "<cmd>TermExec cmd='rustc % && ./first'<cr>", "rust compile" },
 	},
-	--────────────────── ZenMode ────────────────────────
-	z = {
-		name = "Focus",
-		-- z = { ":ZenMode<cr>", "Toggle Zen Mode" },
-		t = { ":Twilight<cr>", "Toggle Twilight" },
-		b = { ":IndentBlanklineToggle<cr>", "Toggle Blankline" },
-		h = { "<cmd>lua vim.o.ls=0<CR>", "Hide StatusBar" },
-		s = { "<cmd>lua vim.o.ls=3<CR>", "Shoe StatusBar" },
-	},
-	--────────────────── ZenMode ────────────────────────
-	n = {
-		name = "Note",
-		-- z = { ":ZenMode<cr>", "Toggle Zen Mode" },
-		m = { ":MindOpenMain<cr>", "Mind main" },
-		p = { ":MindOpenProject<cr>", "Mind Projects" },
-		c = { ":MindClose<cr>", "Mind Close" },
-	},
-
+	--────────────────── Gitsigns ───────────────────────
 	g = {
 		name = "Git",
 		g = { "<cmd>LazyGit<CR>", "Lazygit" },
@@ -157,17 +162,11 @@ local mappings = {
 		r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
 		R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
 		s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-		u = {
-			"<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-			"Undo Stage Hunk",
-		},
+		u = { "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", "Undo Stage Hunk" },
 		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
 		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
 		c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-		d = {
-			"<cmd>Gitsigns diffthis HEAD<cr>",
-			"Diff",
-		},
+		d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
 	},
 }
 

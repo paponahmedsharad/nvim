@@ -9,11 +9,12 @@ comment.setup({
 	sticky = true,
 	ignore = "^$",
 	toggler = {
-		line = "g ",
+		-- line = "g ",
+		line = "co",
 		block = "gbc",
 	},
 	opleader = {
-		line = "g ",
+		line = "co",
 		block = "gb",
 	},
 	extra = {

@@ -102,6 +102,21 @@ map({ "i" }, "<c-i>", "<c-o><c-v>")
 map("v", "<C-v>", [[<cmd>s#\v(\w)(\S*)#\u\1\L\2#g | noh<CR><Esc>]])
 -- map("v", "<C-v>", [[<cmd>s/\<\(\w\)\(\w*\)\>/\u\1\L\2/g<CR><cmd>noh<CR><ESC>]])
 
+--> A FUNCTION TO CHANGE VISUALLY SELECT TEXT "CASE" with <S-~>
+vim.cmd([[
+function! TwiddleCase(str)
+  if a:str ==# toupper(a:str)
+    let result = tolower(a:str)
+  elseif a:str ==# tolower(a:str)
+    let result = substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
+  else
+    let result = toupper(a:str)
+  endif
+  return result
+endfunction
+vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
+]])
+
 --──────────────────────────────────────────────────────────────────────
 -->                        Plugins keymaps
 --──────────────────────────────────────────────────────────────────────
@@ -143,12 +158,8 @@ map("n", "<A-d>", "<cmd>lua vim.lsp.buf.definition()<CR>")
 -- map("n", "f", "<cmd>HopChar1<CR>")
 
 --> leap
-vim.keymap.set(
-	{ "n", "i", "v" },
-	"<A-f>",
-	"<cmd> lua require('leap').leap { target_windows = vim.tbl_filter( function (win) return vim.api.nvim_win_get_config(win).focusable end, vim.api.nvim_tabpage_list_wins(0))}<CR>"
-	-- opts
-)
+map({ "n", "x", "o" }, "f", "<Plug>(leap-forward-to)")
+vim.keymap.set( { "n", "i", "v" }, "<A-f>", "<cmd> lua require('leap').leap { target_windows = vim.tbl_filter( function (win) return vim.api.nvim_win_get_config(win).focusable end, vim.api.nvim_tabpage_list_wins(0))}<CR>", opts)
 
 --> cmp
 map("i", "df", "<cmd>lua require('cmp').confirm({ select = true })<CR>")
@@ -157,18 +168,3 @@ map("i", "fd", "<cmd>lua require('cmp').confirm({ select = true })<CR>")
 --> Emmet
 map({ "i" }, "<A-;>", "<c-o>:Emmet ")
 map({ "n" }, "<A-;>", ":Emmet ")
-
---> A FUNCTION TO CHANGE VISUALLY SELECT TEXT "CASE" with <S-~>
-vim.cmd([[
-function! TwiddleCase(str)
-  if a:str ==# toupper(a:str)
-    let result = tolower(a:str)
-  elseif a:str ==# tolower(a:str)
-    let result = substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
-  else
-    let result = toupper(a:str)
-  endif
-  return result
-endfunction
-vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
-]])
