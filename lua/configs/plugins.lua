@@ -12,8 +12,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	--> Colorscheme
 	{
-    dir = "~/repo/bluloco.new",
-		-- "paponahmedsharad/bluloco.nvim",
+		"paponahmedsharad/bluloco.nvim",
 		lazy = false,
 		priority = 1000,
 		dependencies = { "rktjmp/lush.nvim" },
@@ -22,7 +21,6 @@ require("lazy").setup({
 				style = "dark",
 				transparent = false,
 				italics = true,
-				-- terminal = vim.fn.has("gui_running") == 1,                 --> bluoco colors are enabled in gui terminals per default.
 			})
 			vim.cmd([[colorscheme bluloco]])
 		end,
@@ -66,9 +64,9 @@ require("lazy").setup({
 	{ "folke/twilight.nvim", event = "VeryLazy" },                   --> Foucs
 	{ "windwp/nvim-autopairs", config= true },                       --> Autopairs
 	{ "nvim-lua/popup.nvim" },                                       --> Popup api
-	-- { "uga-rosa/ccc.nvim", config= true, event = "VeryLazy" },       --> Color picker
+  { "Tummetott/reticle.nvim", config= true },                      --> enable cursorline only for focused win
+  { "github/copilot.vim"},                                         --> copilot
 	{ "frabjous/knap", event = "VeryLazy" },                         --> Auto-Previewer for latex
-	-- { "mg979/vim-visual-multi", event = "VeryLazy" },                --> Multi selection
 	{ "norcalli/nvim-colorizer.lua", event = "VeryLazy"},            --> Color Highlight(rgb, hex etc)
 	{ "lewis6991/gitsigns.nvim", config = true, event = "VeryLazy"}, --> Shows git sign on left side
 	{ "kdheepak/lazygit.nvim", config = function() vim.cmd[[let g:lazygit_floating_window_scaling_factor = 1.0]] end, },
@@ -127,19 +125,8 @@ require("lazy").setup({
 			require("mind").setup()
 		end,
 	},
-  { "Tummetott/reticle.nvim", config= true }, --> enable cursorline only for focused win
-  { "github/copilot.vim"},
-  -- { "zbirenbaum/copilot.lua" },
-  -- {
-  --   "zbirenbaum/copilot-cmp",
-  --   after = { "copilot.lua" },
-  --   config = function ()
-  --     require("copilot_cmp").setup({
-  --        method = "getCompletionsCycling",
-  --     })
-  --   end
-  -- }
 
+  --> Lspsaga
   {
       "glepnir/lspsaga.nvim",
       config = function()
@@ -150,6 +137,8 @@ require("lazy").setup({
           })
       end,
   },
+
+  --> Color picker
   {"ziontee113/color-picker.nvim",
   event = "VeryLazy",
       config = function()
