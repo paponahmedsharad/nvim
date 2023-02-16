@@ -12,7 +12,8 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	--> Colorscheme
 	{
-		"paponahmedsharad/bluloco.nvim",
+    dir = "~/repo/bluloco.new",
+		-- "paponahmedsharad/bluloco.nvim",
 		lazy = false,
 		priority = 1000,
 		dependencies = { "rktjmp/lush.nvim" },
@@ -65,14 +66,14 @@ require("lazy").setup({
 	{ "folke/twilight.nvim", event = "VeryLazy" },                   --> Foucs
 	{ "windwp/nvim-autopairs", config= true },                       --> Autopairs
 	{ "nvim-lua/popup.nvim" },                                       --> Popup api
-	{ "uga-rosa/ccc.nvim", config= true, event = "VeryLazy" },       --> Color picker
+	-- { "uga-rosa/ccc.nvim", config= true, event = "VeryLazy" },       --> Color picker
 	{ "frabjous/knap", event = "VeryLazy" },                         --> Auto-Previewer for latex
 	-- { "mg979/vim-visual-multi", event = "VeryLazy" },                --> Multi selection
 	{ "norcalli/nvim-colorizer.lua", event = "VeryLazy"},            --> Color Highlight(rgb, hex etc)
-	{ "lukas-reineke/indent-blankline.nvim", event = "VeryLazy" },   --> Indentation
 	{ "lewis6991/gitsigns.nvim", config = true, event = "VeryLazy"}, --> Shows git sign on left side
 	{ "kdheepak/lazygit.nvim", config = function() vim.cmd[[let g:lazygit_floating_window_scaling_factor = 1.0]] end, },
   { 'echasnovski/mini.surround', version = false, config= function () require('mini.surround').setup() end, event = "VeryLazy"},
+	{ "lukas-reineke/indent-blankline.nvim", config = function() require'colorizer'.setup() end, event = "VeryLazy" },   --> Indentation
 
 	--> formatter
 	{ "lukas-reineke/lsp-format.nvim", event = "VeryLazy" },         --> Formmat support from lsp server
@@ -138,5 +139,22 @@ require("lazy").setup({
   --     })
   --   end
   -- }
+
+  {
+      "glepnir/lspsaga.nvim",
+      config = function()
+          require("lspsaga").setup({
+            symbol_in_winbar = {
+              enable = false,
+            },
+          })
+      end,
+  },
+  {"ziontee113/color-picker.nvim",
+  event = "VeryLazy",
+      config = function()
+          require("color-picker")
+      end,
+  }
 --───────────────────────── E N D ──────────────────────────────────
 })

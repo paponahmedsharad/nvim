@@ -25,7 +25,7 @@ set softtabstop=4
 " im <M-c> <Esc>jcit
 " nmap <M-c> <Esc>jcit
 
-autocmd TextChanged,TextChangedI <buffer> silent write
+" autocmd TextChanged,TextChangedI <buffer> silent write
 
 """" Run the code in a terminal
 """""""""""" node.js """"""""

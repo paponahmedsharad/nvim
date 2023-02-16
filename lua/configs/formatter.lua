@@ -47,6 +47,17 @@ formatter.setup({
 			end,
 		},
 
+		--> javascript
+		typescript = {
+			function()
+				return {
+					exe = "prettierd",
+					args = { vim.api.nvim_buf_get_name(0) },
+					stdin = true,
+				}
+			end,
+		},
+
 		--> python
 		python = {
 			function()

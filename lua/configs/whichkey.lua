@@ -66,13 +66,36 @@ local mappings = {
 		p = { ":MindOpenProject<cr>", "Mind Projects" },
 		c = { ":MindClose<cr>", "Mind Close" },
 	},
+	--─────────────────── Note ─────────────────────────
+	j = {
+		name = "Note",
+		r = { "<cmd>Lspsaga rename ++project<cr>", "rename" },
+		p = { "<cmd>Lspsaga peek_definition<CR>", "peek" },
+		d = { "<cmd>Lspsaga goto_definition<CR>", "defination" },
+		a = { "<cmd>Lspsaga code_action<CR>", "action" },
+		o = { "<cmd>Lspsaga outline<CR>", "outline" },
+		t = { "<cmd>Lspsaga term_toggle<CR>", "rename" },
+		f = { "<cmd>Lspsaga lsp_finder<CR>", "finder" },
+		k = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", "D. next" },
+		j = { "<cmd>Lspsaga diagnostic_jump_next<CR>", "D. prev" },
+		s = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Line diagonostics" },
+		h = { "<cmd>Lspsaga hover_doc<CR>", "Hover" },
+	},
 	--─────────────────── Options ──────────────────────
 	o = {
 		name = "Options",
+		a = { "<cmd>autocmd TextChanged,TextChangedI <buffer> silent write<CR>", "Auto write" },
+		A = { "<cmd>autocmd! TextChanged,TextChangedI <buffer><CR>", "Disable Auto write" },
 		s = { "<cmd>set spell!<cr>", "Toggle spell" },
+		b = { "<cmd>IndentBlanklineToggle<cr>", "Toggle Blankline" },
 		n = { "<cmd>set nu!<cr>", "Toggle number" },
 		c = { "<cmd>set signcolumn=no<cr>", "Toggle signcolumn" },
 		z = { "<cmd>set signcolumn=no nu! |IndentBlanklineToggle<cr>", "ZenMode" },
+		C = { "<cmd>Copilot disable<CR>", "Disable Copilot" },
+    f = { "<cmd>autocmd BufWritePre * FormatWrite<CR>", "Auto format" },
+    F = { "<cmd>autocmd! BufWritePre * FormatWrite<CR>", "Disable AutoFormat" },
+    d = { "<cmd>autocmd CursorHold * Lspsaga show_line_diagnostics<CR>", "Auto Diagnostics" },
+    H = { "<cmd>autocmd CursorHold * echo<CR>", "Clear command line" },
 	},
 	--───────────────── ZenMode ────────────────────────
 	z = {
@@ -95,6 +118,8 @@ local mappings = {
 		o = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
 		m = { "<cmd>Telescope  media_files<cr>", "Media Files" },
 		z = { "<cmd>FzfLua files<cr>", "Fzf Files" },
+		a = { "<cmd>lua require('harpoon.mark').add_file()<CR>", "Harpoon add" },
+		M = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "Harpoon marks" },
 	},
 	--────────────────── packer ────────────────────────
 	p = {
