@@ -36,6 +36,7 @@ local options = {
 	fileencoding = "utf-8",
 	cmdheight = 0, --> height below status line
 	splitbelow = true,
+  splitright = true,
 
 	-- copyindent = true,
 	smartindent = true,
@@ -44,11 +45,19 @@ local options = {
 	tabstop = 2, -- insert 2 spaces for a tab
 	shiftwidth = 2, -- the number of spaces inserted for each indentation
 	-- softtabstop = 4,
+  -- no fold
+  foldmethod = "manual",
+  -- disable folding
+  -- foldenable = false,
+
+
+
 
 	--> new options
 	completeopt = { "menuone", "noselect" },
 	laststatus = 3, -- Global Status
-	formatoptions = "crqnbj",
+	-- formatoptions = "crqnbj",
+  formatoptions = "qjl1",
 	-- set.conceallevel = 2
 }
 
@@ -91,17 +100,20 @@ for _, plugin in ipairs(builtins) do
 	vim["loaded_" .. plugin] = 1
 end
 
+local o=vim.opt
+
 --> testing-stage
-vim.opt.shortmess:append("c") --> hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
-vim.opt.whichwrap:append("<,>,[,],h,l") --> keys allowed to move to the previous/next line when the beginning/end of line is reached
-vim.opt.iskeyword:append({ "-" }) --> treats words with `-` as single words
-vim.opt.formatoptions:remove({ "c", "r", "o" }) -- This is a sequence of letters which describes how automatic formatting is to be done
-vim.opt.fillchars = { eob = " " } --> hide ~ at the end of the buffer
-vim.opt.fillchars:append("fold: ") --> hide the fold marker
+o.shortmess:append("c") --> hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
+o.whichwrap:append("<,>,[,],h,l") --> keys allowed to move to the previous/next line when the beginning/end of line is reached
+o.iskeyword:append({ "-" }) --> treats words with `-` as single words
+o.formatoptions:remove({ "c", "r", "o" }) -- This is a sequence of letters which describes how automatic formatting is to be done
+o.fillchars = { eob = " " } --> hide ~ at the end of the buffer
+o.fillchars:append("fold: ") --> hide the fold marker
 
 -----------------> options for neovide --------------->
 if vim.g.neovide then
 	vim.opt.guifont = { "AestheticIosevka Nerd Font Mono", ":h10" }
+	-- vim.opt.guifont = { "Fira Code Nerd Font Mono", ":h10" }
 	vim.g.neovide_transparency = 0.96
 	vim.g.neovide_floating_blur_amount_x = 2.0
 	vim.g.neovide_floating_blur_amount_y = 2.0
@@ -115,9 +127,9 @@ if vim.g.neovide then
 		vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
 	end
 	vim.keymap.set("n", "<C-=>", function()
-		change_scale_factor(1.25)
+		change_scale_factor(1.10)
 	end)
 	vim.keymap.set("n", "<C-->", function()
-		change_scale_factor(1 / 1.25)
+		change_scale_factor(1 / 1.10)
 	end)
 end

@@ -11,10 +11,10 @@ map({ "i", "c", "v", "s" }, "jk", [[<Esc>]])
 map({ "i", "c", "v", "s" }, "kj", [[<Esc>]])
 
 --> motion keys for insert mode
-map("i", "<C-h>", "<Left>", opts)
-map("i", "<C-l>", "<Right>", opts)
-map("i", "<C-j>", "<Down>", opts)
-map("i", "<C-k>", "<Up>", opts)
+map("i", "<C-h>", "<Left>",  { silent = true})
+map("i", "<C-l>", "<Right>", { silent = true})
+map("i", "<C-j>", "<Down>",  { silent = true})
+map("i", "<C-k>", "<Up>",    { silent = true})
 
 --> move between splits
 map("n", "<C-h>", "<C-w>h", opts)
@@ -46,7 +46,7 @@ map({ "n" }, "fd", [[:]])
 
 --> quit and save
 map("n", "<leader>q", "<cmd>qall!<CR>", nosilent) --> quit all
-map({ "n" }, "<leader>w", "<cmd>w<CR>", nosilent) --> save
+map({ "n" }, "<leader>w", "<cmd>w<CR>", opts) --> save
 map({ "n", "i" }, "<C-s>", "<cmd>w<CR>", nosilent) --> save
 
 --> move the line up/down left/right
@@ -126,6 +126,15 @@ endfunction
 vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 ]])
 
+-- local function nohlsearchh()
+--   if vim.v.hlsearch == 1 then
+--     vim.cmd("nohlsearch")
+--   else
+--     vim.cmd("split")
+--   end
+-- end
+
+-- vim.keymap.set("n", "<C-h>", nohlsearchh)
 --──────────────────────────────────────────────────────────────────────
 -->                        Plugins keymaps
 --──────────────────────────────────────────────────────────────────────

@@ -94,8 +94,10 @@ local mappings = {
 		C = { "<cmd>Copilot disable<CR>", "Disable Copilot" },
     f = { "<cmd>autocmd BufWritePre * FormatWrite<CR>", "Auto format" },
     F = { "<cmd>autocmd! BufWritePre * FormatWrite<CR>", "Disable AutoFormat" },
-    d = { "<cmd>autocmd CursorHold * Lspsaga show_line_diagnostics<CR>", "Auto Diagnostics" },
+    d = { "<cmd>autocmd CursorHold * Lspsaga show_line_diagnostics<CR>", "Show Diagnostics" },
     H = { "<cmd>autocmd CursorHold * echo<CR>", "Clear command line" },
+    K = { "<cmd>mapclear<CR><cmd>imapclear<CR>", "Clear keymaps" },
+    l = { "<cmd>LspStop<CR>", "Stop Lsp" },
 	},
 	--───────────────── ZenMode ────────────────────────
 	z = {
