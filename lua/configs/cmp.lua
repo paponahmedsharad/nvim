@@ -56,8 +56,8 @@ cmp.setup({
 		format = function(entry, vim_item)
 			-- vim_item.kind = string.format("%s", kind_icons[vim_item.kind]) -- Kind icons
 			vim_item.menu = ({
-        -- icons 💡🔆
-				nvim_lsp = " ⌘",
+        -- icons 💡🔆⌘ 
+				nvim_lsp = " ",
 				snippy = " ",
 				vim_snippets = " ",
         emmet_vim = " ",

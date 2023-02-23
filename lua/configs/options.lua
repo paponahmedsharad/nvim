@@ -109,6 +109,7 @@ o.iskeyword:append({ "-" }) --> treats words with `-` as single words
 o.formatoptions:remove({ "c", "r", "o" }) -- This is a sequence of letters which describes how automatic formatting is to be done
 o.fillchars = { eob = " " } --> hide ~ at the end of the buffer
 o.fillchars:append("fold: ") --> hide the fold marker
+-- no messages
 
 -----------------> options for neovide --------------->
 if vim.g.neovide then

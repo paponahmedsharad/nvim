@@ -9,8 +9,8 @@
 " im kd <C-k><CR>
 
 """ source/compile result in terminal"""
-inoremap <A-space> <C-o>:TermExec cmd='lua %'<cr>
-nmap <A-space> :TermExec cmd='lua %'<cr>
+" inoremap <A-space> <C-o>:TermExec cmd='lua %'<cr>
+" nmap <A-space> :TermExec cmd='lua %'<cr>
 
 "--> auto write on change
 autocmd TextChanged,TextChangedI <buffer> silent write

@@ -54,7 +54,7 @@ local opts = {
 --──────────────────── MAPPINGS ────────────────────────
 local mappings = {
 	["e"] = { "<cmd>Neotree toggle<CR>", "Explorer" },
-	["w"] = { "<cmd>w!<CR>", "Save" },
+  -- ["w"] = { "<cmd>silent! w<CR>", "Save" ,
 	["a"] = { "<cmd>tabnew<CR>", "New Tab" },
 	["c"] = { "<cmd>close<CR>", "Close Window" },
 	["d"] = { "<cmd>bdelete!<CR>", "Close Buffer" },

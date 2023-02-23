@@ -106,7 +106,7 @@ im <A-n> <Esc>}o
 
 
 --> vertical selection mode
-map({ "i" }, "<c-m>", "<c-o><c-v>")
+-- map({ "i" }, "<c-m>", "<c-o><c-v>")
 
 --> run norm commands in insert mode
 map({ "i" }, "<C-i>", "<Esc>u@.")
