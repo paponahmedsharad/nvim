@@ -7,9 +7,9 @@
 " im kd <C-k><CR>
 
 """" go to begging of the line
-im <C-a> <C-o>^
+" im <C-a> <C-o>^
 """" go to end of the line
-im <C-e> <C-o>$
+" im <C-e> <C-o>$
 
 """" helpful for list
 " im fr <Right>,<space>

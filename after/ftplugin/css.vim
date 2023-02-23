@@ -16,7 +16,7 @@ set softtabstop=2
 " nmap pj <Esc>yisvis<Space>/}p
 
 
-im <A-n> <Esc>}o
+" im <A-n> <Esc>}o
 
 
 " AUTO SAVE

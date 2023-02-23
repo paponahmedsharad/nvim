@@ -1,6 +1,8 @@
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
+
+autocmd TextChanged,TextChangedI <buffer> silent write
 " colorscheme onedarker
 """" select the first item from lsp/cmp
 " im df <C-j><CR>
@@ -17,8 +19,8 @@ set softtabstop=2
 
 
 """"chnage indside of a tag
-im <C-c> <Esc>cit
-nmap <C-c> <Esc>cit
+" im <C-c> <Esc>cit
+" nmap <C-c> <Esc>cit
 
 " im df <C-j><CR>
 " im fd <C-j><CR>
@@ -27,7 +29,6 @@ nmap <C-c> <Esc>cit
 " im <M-c> <Esc>jcit
 " nmap <M-c> <Esc>jcit
 
-autocmd TextChanged,TextChangedI <buffer> silent write
 
 
 

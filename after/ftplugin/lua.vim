@@ -1,5 +1,8 @@
 " setlocal foldmethod=indent
 
+"--> auto write on change
+autocmd TextChanged,TextChangedI <buffer> silent write
+
 "---> select the first item from lsp/cmp
 " im df <C-j><CR>
 " im fd <C-j><CR>
@@ -12,8 +15,6 @@
 " inoremap <A-space> <C-o>:TermExec cmd='lua %'<cr>
 " nmap <A-space> :TermExec cmd='lua %'<cr>
 
-"--> auto write on change
-autocmd TextChanged,TextChangedI <buffer> silent write
 
 
 
@@ -28,10 +29,10 @@ autocmd TextChanged,TextChangedI <buffer> silent write
 
 
 " move line or visually selected block - alt+j/k
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+" inoremap <A-j> <Esc>:m .+1<CR>==gi
+" inoremap <A-k> <Esc>:m .-2<CR>==gi
+" vnoremap <A-j> :m '>+1<CR>gv=gv
+" vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " " move split panes to left/bottom/top/right
  " nnoremap <A-h> <C-W>H
@@ -44,7 +45,5 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
  " nnoremap <C-k> <C-w>k
  " nnoremap <C-l> <C-w>l
 
-" copies filepath to clipboard by pressing yf
-nnoremap <silent> yc :let @+=expand('%:p')<CR>
 " copies pwd to clipboard: command yd
 " nnoremap <silent> yd :let @+=expand('%:p:h')<CR>

@@ -120,6 +120,7 @@ local mappings = {
 		o = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
 		m = { "<cmd>Telescope  media_files<cr>", "Media Files" },
 		z = { "<cmd>FzfLua files<cr>", "Fzf Files" },
+		c = { "<cmd>let @+=expand('%:p')<cr>", "Copy path" },
 		a = { "<cmd>lua require('harpoon.mark').add_file()<CR>", "Harpoon add" },
 		M = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "Harpoon marks" },
 	},
