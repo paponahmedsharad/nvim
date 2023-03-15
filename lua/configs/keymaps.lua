@@ -5,6 +5,7 @@ local nosilent = { noremap = true, silent = true }
 --> set leader key
 map("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " " --> leader key
+vim.g.maplocalleader = ";"
 
 --> Escape from different modes
 map({ "i", "c", "v", "s" }, "jk", [[<Esc>]])
@@ -157,16 +158,11 @@ vim.keymap.set({ "i", "n" }, "<C-p>", "<cmd>PickColorInsert<CR>", opts)
 map("n", "<A-g>", "<cmd>ChatGPT<cr>", opts)
 
 --> fzf registers
--- map({ "n", "i" }, "<A-c>", "<cmd>FzfLua registers<CR>", opts)
+map({ "n", "i" }, "<A-c>", "<cmd>FzfLua registers<CR>", opts)
 map({ "n", "i" }, "<A-c>", "<cmd>FzfLua files<CR>", opts)
 
 --> telescope frecency
-vim.api.nvim_set_keymap(
-	"n",
-	",,",
-	"<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>",
-	{ noremap = true, silent = true }
-)
+vim.api.nvim_set_keymap( "n", ",,", "<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>", { noremap = true, silent = true })
 
 --> LSP
 map("n", "gh", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
@@ -191,7 +187,7 @@ map("i", "df", "<cmd>lua require('cmp').confirm({ select = true })<CR>")
 map("i", "fd", "<cmd>lua require('cmp').confirm({ select = true })<CR>")
 
 --> lspsaga
-map("n", "<S-h>", "<cmd>Lspsaga hover_doc<CR>")
+map("n", ";;", "<cmd>Lspsaga hover_doc<CR>", opts)
 
 --> Emmet
 map({ "i" }, "<A-;>", "<c-o>:Emmet ")

@@ -1,4 +1,5 @@
 -- vim.cmd([[ colorscheme onecolor ]])
+
 ----> LETS OVERWRITE COLOR SCHEME
 local hilight=vim.cmd.highlight
 local overWriteColors = {
@@ -6,7 +7,7 @@ local overWriteColors = {
     CursorLine          = "guibg=#232534",                          --> cursorLine background
     LineNr              = "guifg=#233d46",                          --> left side line number
     CursorLineNr        = "guifg=#247c99 term=bold gui=bold",       --> current line number
-    Folded              = "guibg=#1a1c28",                          --> fold text color
+    Folded              = "guibg=#1e202c guifg=#585992",                          --> fold text color
     Search              = "guibg=#2c3841",                          --> search text color
     comment             = "guifg=#5f4f5f",                          --> comment color
     MatchParen          = "guibg=#2f3c41 guifg=#80b3e6",            --> MatchParen ('()') color
@@ -20,9 +21,11 @@ local overWriteColors = {
     NormalSB            = "guibg=#1a1b26 guifg=#4d4d4d",            --> Normal text in floating windows.
     VisualNOS           = "guibg=#333333",                          --> Visual mode selection when vim is "Not Owning the Selection".
     LazyNormal           = "guibg=#252631",                         --> border for lazy nvim
-    ----> telescope
+    ----> telescope/plugin{{{
    -- TelescopeBorder     ="guifg=#9986c7 guibg=NONE",
    -- TelescopeMatching   ="guifg=#e6e600 gui=bold",
+   MiniIndentscopeSymbol = "guifg=#666699",
+   IndentBlanklineChar   = "guifg=#2a2929",-- }}}
 }
 
 for k,v in pairs(overWriteColors) do
@@ -37,6 +40,12 @@ local cssColor = {
   dim                   = 'guifg=#504156',
   braces                = 'guifg=#42434e',
   selector              = 'guifg=#ff814d guibg=#31323d gui=bold',
+  --> another variation{{{
+  -- right                 = 'guifg=#c7c300',
+  -- left                  = 'guifg=#ff6480',
+  -- dim                   = 'guifg=#504156',
+  -- braces                = 'guifg=#8043b3',
+  -- selector              = 'guifg=#9567d9 guibg=#2b2c37 gui=bold',}}}
 }
 
 local cssHighlight = {
@@ -46,13 +55,13 @@ local cssHighlight = {
   cssPseudoClass        = cssColor.selector,                  --> pseudo class
   cssTagName            = cssColor.selector,                  --> tag name
   cssClassNameDot       = cssColor.selector,                  --> class name dot
-  cssFunctionName       = cssColor.selector,                  --> url keyword
   cssImportant          = cssColor.right,                     --> !important keyword color
   cssAttr               = cssColor.right,                     --> css attribute like none , color, font-size
   number                = cssColor.right,                     --> any number
   cssUnitDecorators     = cssColor.right,                     --> rem, px etc
   cssColor              = cssColor.right,                     --> css color for transparent,
   cssFontAttr           = cssColor.right,                     --> css font like sans-serif, serif
+  cssFunctionName       = cssColor.left,                     --> url/rbga keyword
   cssSelectorOp         = cssColor.left,                      --> selector operator like > +
   cssSelectorOp2        = cssColor.left,                      --> second selector operator
   cssProp               = cssColor.left,                      --> css property
@@ -74,7 +83,7 @@ set statusline=%{repeat('─',winwidth('.'))}
 
 
 ---------------------------------------------------------------------------------
---> Trash
+--> Trash{{{
 ---------------------------------------------------------------------------------
 -- vim.cmd([[hi VertSplit guibg=bg guifg=#e6e600 ]]) --> win spliting line color
 -- vim.cmd [[hi Visual guibg =#30455c]] --> visual selection color
@@ -102,4 +111,4 @@ set statusline=%{repeat('─',winwidth('.'))}
   TabLine             = "guibg=#1a1b26 guifg=#3a3b36 gui=NONE", -- tab pages line, not active tab page label
   TabLineFill         = "guibg=#1a1b26 guifg=#1a1b26", -- tab pages line, where there are no labels
   TabLineSel          = "guibg=#ffff44 guifg=#00000", -- tab pages line, active tab page label
-} ]]
+} ]]-- }}}

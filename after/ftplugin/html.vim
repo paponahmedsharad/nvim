@@ -1,8 +1,14 @@
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+" set tabstop=2
+" set shiftwidth=2
+" set softtabstop=2
+
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 
 autocmd TextChanged,TextChangedI <buffer> silent write
+
+im <C-Return> <Return><Esc>ko
 " colorscheme onedarker
 """" select the first item from lsp/cmp
 " im df <C-j><CR>

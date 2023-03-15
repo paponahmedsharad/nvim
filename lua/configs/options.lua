@@ -4,20 +4,26 @@
 local options = {
 	ttyfast = true,
 	termguicolors = true,
-	-- guifont = { "AestheticIosevka Nerd Font Mono", ":h10" },
+  -- guicursor="n:blinkon20",
+  guicursor= "i-ci:ver30-iCursor-blinkwait100-blinkon200-blinkoff150",
+	-- guifont = { "AestheticIosevka Nerd Font Mono", ":h14" },
+	guifont = { "CodeNewRoman Nerd Font Mono", ":h18" },
+  -- autowrite = true,
 	clipboard = "unnamedplus", --> system clipboard
-	backup = false, -- creates a backup file
-	number = true, --> shows number
-	relativenumber = false, --> relative number style
-	signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
-	-- showtabline = 2, -- always show tabs
-	smarttab = true,
-	showmode = false, -- we don't need to see things like -- INSERT -- anymore
-	shortmess = "IqcFWoOcT",
-	hidden = true, --> required to keep multiple buffers and open multiple buffers
-	cursorline = true, --> show cursorline
-	swapfile = false, --> no swap
-	hlsearch = true, --> highlight search
+	backup = false,            -- creates a backup file
+	number = true,             --> shows number
+	relativenumber = false,    --> relative number style
+	signcolumn = "yes",        --> always show the sign column, otherwise it would shift the text each time
+  -- showtabline = 2,        --> always show tabs
+	smarttab = true,           --> When on, a <Tab> in front of a line inserts blanks according to shiftwidth
+	showmode = false,          --> we don't need to see things like -- INSERT -- anymore
+  showcmd = false,           --> Show (partial) command in the last line of the screen
+	-- shortmess = "IqcFWoOcT",   --> This option helps to avoid all the |hit-enter| prompts
+	shortmess = "mnwaoIcCFT",   --> This option helps to avoid all the |hit-enter| prompts
+	hidden = true,             --> required to keep multiple buffers and open multiple buffers
+	cursorline = true,         --> show cursorline
+	swapfile = false,          --> no swap
+	hlsearch = true,           --> highlight search
 	incsearch = true,
 	ignorecase = true, --> ignorecase in search
 	smartcase = true,
@@ -28,7 +34,7 @@ local options = {
 	scrolloff = 4,
 	sidescrolloff = 2,
 	updatetime = 300, --> faster completion (4000ms default)
-	timeoutlen = 150, --> time to wait for a mapped sequence to complete (in milliseconds)
+	timeoutlen = 100, --> time to wait for a mapped sequence to complete (in milliseconds)
 
 	wrap = false, --> display lines as one long line
 	whichwrap = "b,s,<,>,[,],h,l",
@@ -46,7 +52,8 @@ local options = {
 	shiftwidth = 2, -- the number of spaces inserted for each indentation
 	-- softtabstop = 4,
   -- no fold
-  foldmethod = "manual",
+  -- foldmethod = "manual",
+  foldmethod = "marker",
   -- disable folding
   -- foldenable = false,
 
@@ -114,7 +121,9 @@ o.fillchars:append("fold: ") --> hide the fold marker
 -----------------> options for neovide --------------->
 if vim.g.neovide then
 	vim.opt.guifont = { "AestheticIosevka Nerd Font Mono", ":h10" }
+	-- vim.opt.guifont = { "CodeNewRoman Nerd Font Mono", ":h12" }
 	-- vim.opt.guifont = { "Fira Code Nerd Font Mono", ":h10" }
+  -- vim.opt.linespace = 8
 	vim.g.neovide_transparency = 0.96
 	vim.g.neovide_floating_blur_amount_x = 2.0
 	vim.g.neovide_floating_blur_amount_y = 2.0

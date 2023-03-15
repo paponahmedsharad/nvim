@@ -92,13 +92,22 @@ local mappings = {
 		c = { "<cmd>set signcolumn=no<cr>", "Toggle signcolumn" },
 		z = { "<cmd>set signcolumn=no nu! |IndentBlanklineToggle<cr>", "ZenMode" },
 		C = { "<cmd>Copilot disable<CR>", "Disable Copilot" },
-    f = { "<cmd>autocmd BufWritePre * FormatWrite<CR>", "Auto format" },
-    F = { "<cmd>autocmd! BufWritePre * FormatWrite<CR>", "Disable AutoFormat" },
+    f = { "<cmd>autocmd BufWritePre * lua vim.lsp.buf.format({async = true})<CR>", "Auto format" },
+    F = { "<cmd>autocmd! BufWritePre *<CR>", "Disable AutoFormat" },
     d = { "<cmd>autocmd CursorHold * Lspsaga show_line_diagnostics<CR>", "Show Diagnostics" },
     H = { "<cmd>autocmd CursorHold * echo<CR>", "Clear command line" },
     K = { "<cmd>mapclear<CR><cmd>imapclear<CR>", "Clear keymaps" },
     l = { "<cmd>LspStop<CR>", "Stop Lsp" },
 	},
+
+	--───────────────── Run Code ──────────────────────
+	r = {
+		name = "Run TS/JS",
+		-- z = { ":ZenMode<cr>", "Toggle Zen Mode" },
+		v = { "<cmd>TermExec size=40 cmd='deno run %' direction=vertical<cr>", "Run JS/TS vertical" },
+		h = { "<cmd>TermExec size=10 cmd='deno run %' direction=horizontal<cr>", "Run JS/TS horizontal" },
+	},
+
 	--───────────────── ZenMode ────────────────────────
 	z = {
 		name = "Focus",

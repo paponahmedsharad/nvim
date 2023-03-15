@@ -9,7 +9,7 @@ set softtabstop=4
 " inoremap <A-space> <C-o>:TermExec cmd='node %'<cr>
 " nmap <A-space> :TermExec cmd='node %'<cr>
 " DENO
-inoremap <A-space> <C-o>:TermExec cmd='deno run %'<cr>
+" inoremap <A-space> <C-o>:TermExec cmd='deno run %'<cr>
 nmap <A-space> :TermExec cmd='deno run %'<cr>
 
 " js formatter; npm -g install js-beautify
