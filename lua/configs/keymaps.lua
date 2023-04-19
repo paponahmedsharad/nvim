@@ -159,7 +159,7 @@ map("n", "<A-g>", "<cmd>ChatGPT<cr>", opts)
 
 --> fzf registers
 map({ "n", "i" }, "<A-c>", "<cmd>FzfLua registers<CR>", opts)
-map({ "n", "i" }, "<A-c>", "<cmd>FzfLua files<CR>", opts)
+-- map({ "n", "i" }, "<A-c>", "<cmd>FzfLua files<CR>", opts)
 
 --> telescope frecency
 vim.api.nvim_set_keymap( "n", ",,", "<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>", { noremap = true, silent = true })

@@ -120,7 +120,8 @@ o.fillchars:append("fold: ") --> hide the fold marker
 
 -----------------> options for neovide --------------->
 if vim.g.neovide then
-	vim.opt.guifont = { "AestheticIosevka Nerd Font Mono", ":h10" }
+	-- vim.opt.guifont = { "AestheticIosevka Nerd Font Mono", ":h10" }
+	vim.opt.guifont = { "Victor Mono", ":h8" }
 	-- vim.opt.guifont = { "CodeNewRoman Nerd Font Mono", ":h12" }
 	-- vim.opt.guifont = { "Fira Code Nerd Font Mono", ":h10" }
   -- vim.opt.linespace = 8

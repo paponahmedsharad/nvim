@@ -38,8 +38,8 @@ local cssColor = {
   left                  = 'guifg=#778cd9',
   right                 = 'guifg=#ff6480',
   dim                   = 'guifg=#504156',
-  braces                = 'guifg=#42434e',
-  selector              = 'guifg=#ff814d guibg=#31323d gui=bold',
+  braces                = 'guifg=#494a55',
+  selector              = 'guifg=#ff814d guibg=#252631 gui=bold',
   --> another variation{{{
   -- right                 = 'guifg=#c7c300',
   -- left                  = 'guifg=#ff6480',
