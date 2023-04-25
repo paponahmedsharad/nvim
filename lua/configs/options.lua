@@ -109,7 +109,7 @@ end
 
 local o=vim.opt
 
---> testing-stage
+--> experimental options
 o.shortmess:append("c") --> hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
 o.whichwrap:append("<,>,[,],h,l") --> keys allowed to move to the previous/next line when the beginning/end of line is reached
 o.iskeyword:append({ "-" }) --> treats words with `-` as single words
@@ -117,6 +117,11 @@ o.formatoptions:remove({ "c", "r", "o" }) -- This is a sequence of letters which
 o.fillchars = { eob = " " } --> hide ~ at the end of the buffer
 o.fillchars:append("fold: ") --> hide the fold marker
 -- no messages
+
+vim.opt.statuscolumn="%@SignCb@%s%=%T%@NumCb@%l │  %T"
+-- vim.opt.statuscolumn="%s%=%T%l  │   %T"
+
+
 
 -----------------> options for neovide --------------->
 if vim.g.neovide then
@@ -144,3 +149,5 @@ if vim.g.neovide then
 		change_scale_factor(1 / 1.10)
 	end)
 end
+
+
