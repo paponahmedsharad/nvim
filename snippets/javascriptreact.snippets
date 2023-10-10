@@ -16,6 +16,9 @@ snippet className
 
 snippet append
   append($1)
+
+snippet uses
+  const [${1:state}, set$2] = useState("${3:Initial value}")
 #------------------------------------
 # Console log
 snippet log
@@ -375,7 +378,7 @@ snippet foro "for (const prop of object}) { ... }"
 	for (const ${1:prop} of ${2:object}) {
 		${0:$1}
 	}
-snippet forl "for (let prop of object}) { ... }"
+snippet forl "for (let prop of object) { ... }"
 	for (let ${1:prop} of ${2:object}) {
 		${0:$1}
 	}

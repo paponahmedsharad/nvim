@@ -12,25 +12,51 @@ autocmd("BufEnter", {
 	desc = "Disable autocommenting in new lines",
 })
 
--- Highlight while yanking
+--> Highlight while yanking
+-- autocmd("TextYankPost", {
+-- 	pattern = "*",
+-- 	desc = "Highlight while yanking",
+-- 	group = "_buffer",
+-- 	callback = function()
+-- 		vim.highlight.on_yank({ higroup = "Visual" })
+-- 	end,
+-- })
+
+-- 8. Effect: Briefly flash on yank
 autocmd("TextYankPost", {
-	pattern = "*",
-	desc = "Highlight while yanking",
-	group = "_buffer",
-	callback = function()
-		vim.highlight.on_yank({ higroup = "Visual" })
-	end,
+  desc = "Highlight yanked text",
+  group = augroup("highlightyank", { clear = true }),
+  pattern = "*",
+  callback = function() vim.highlight.on_yank() end,
 })
+-- autocmd("FileType", {
+-- 	desc = "Quit with q in this filetypes",
+-- 	group = "_buffer",
+-- 	pattern = "qf,help,man,lspinfo,startuptime,Trouble",
+-- 	callback = function()
+-- 		vim.keymap.set("n", "q", "<CMD>close<CR>")
+-- 	end,
+-- })
 
-autocmd("FileType", {
-	desc = "Quit with q in this filetypes",
-	group = "_buffer",
-	pattern = "qf,help,man,lspinfo,startuptime,Trouble",
-	callback = function()
-		vim.keymap.set("n", "q", "<CMD>close<CR>")
-	end,
+-- 7. Make q close help, man, quickfix, dap floats
+autocmd("BufWinEnter", {
+  desc = "Make q close help, man, quickfix, dap floats",
+  group = augroup("q_close_windows", { clear = true }),
+  callback = function(event)
+    local filetype =
+      vim.api.nvim_get_option_value("filetype", { buf = event.buf })
+    local buftype =
+      vim.api.nvim_get_option_value("buftype", { buf = event.buf })
+    if buftype == "nofile" or filetype == "help" then
+      vim.keymap.set(
+        "n",
+        "q",
+        "<cmd>close<cr>",
+        { buffer = event.buf, silent = true, nowait = true }
+      )
+    end
+  end,
 })
-
 
 autocmd("FileType", {
 	pattern = { "c", "javascript", "py", "cs" },
@@ -90,10 +116,11 @@ autocmd("BufReadPost", {
 -- autocmd({ "CursorHold" }, {
 -- 	desc = "Open float when there is diagnostics",
 -- 	group = "_lsp",
--- 	callback = vim.diagnostic.open_float,
--- 	-- callback = vim.lsp.buf.signature_help,
--- 	-- callback = require("lspsaga.diagnostic").show_line_diagnostics,
--- 	-- command = [[Lspsaga show_line_diagnostics]],
+	-- callback = vim.diagnostic.open_float,
+
+	-- callback = vim.lsp.buf.signature_help,
+	-- callback = require("lspsaga.diagnostic").show_line_diagnostics,
+	-- command = [[Lspsaga show_line_diagnostics]],
 -- })
 
 -- autocmd("VimResized", {

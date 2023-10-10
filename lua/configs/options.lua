@@ -4,15 +4,17 @@
 local options = {
 	ttyfast = true,
 	termguicolors = true,
+    -- numberwidth = 6,
+  foldcolumn='2',
   -- guicursor="n:blinkon20",
   guicursor= "i-ci:ver30-iCursor-blinkwait100-blinkon200-blinkoff150",
 	-- guifont = { "AestheticIosevka Nerd Font Mono", ":h14" },
-	guifont = { "CodeNewRoman Nerd Font Mono", ":h18" },
+	-- guifont = { "CodeNewRoman Nerd Font Mono", ":h18" },
   -- autowrite = true,
 	clipboard = "unnamedplus", --> system clipboard
 	backup = false,            -- creates a backup file
 	number = true,             --> shows number
-	relativenumber = false,    --> relative number style
+	relativenumber = true,    --> relative number style
 	signcolumn = "yes",        --> always show the sign column, otherwise it would shift the text each time
   -- showtabline = 2,        --> always show tabs
 	smarttab = true,           --> When on, a <Tab> in front of a line inserts blanks according to shiftwidth
@@ -33,8 +35,8 @@ local options = {
 
 	scrolloff = 4,
 	sidescrolloff = 2,
-	updatetime = 300, --> faster completion (4000ms default)
-	timeoutlen = 100, --> time to wait for a mapped sequence to complete (in milliseconds)
+	updatetime = 200, --> faster completion (4000ms default)
+	timeoutlen = 50, --> time to wait for a mapped sequence to complete (in milliseconds)
 
 	wrap = false, --> display lines as one long line
 	whichwrap = "b,s,<,>,[,],h,l",
@@ -62,6 +64,7 @@ local options = {
 
 	--> new options
 	completeopt = { "menuone", "noselect" },
+	-- completeopt = {"menu,menuone,noinsert"},
 	laststatus = 3, -- Global Status
 	-- formatoptions = "crqnbj",
   formatoptions = "qjl1",
@@ -118,7 +121,9 @@ o.fillchars = { eob = " " } --> hide ~ at the end of the buffer
 o.fillchars:append("fold: ") --> hide the fold marker
 -- no messages
 
-vim.opt.statuscolumn="%@SignCb@%s%=%T%@NumCb@%l │  %T"
+-- vim.opt.statuscolumn="%@SignCb@%s%=%T%@NumCb@%l │  %T"
+-- vim.opt.statuscolumn="%@SignCb@%s%=%T%@NumCb@%l │  %T"
+-- vim.opt.statuscolumn="%@SignCb@%s%=%T%@NumCb@%l ▊ %T"
 -- vim.opt.statuscolumn="%s%=%T%l  │   %T"
 
 
@@ -126,11 +131,16 @@ vim.opt.statuscolumn="%@SignCb@%s%=%T%@NumCb@%l │  %T"
 -----------------> options for neovide --------------->
 if vim.g.neovide then
 	-- vim.opt.guifont = { "AestheticIosevka Nerd Font Mono", ":h10" }
-	vim.opt.guifont = { "Victor Mono", ":h8" }
+	-- vim.opt.guifont = { "Victor Mono", ":h8" }
+
+
+	-- vim.opt.guifont = { "Comic Mono", ":h8" }
+  vim.opt.guifont={"Victor Mono","Cascadia Mono Light","Comic Mono,FiraCode Nerd Font MonoComicMono Nerd Font, Victor Mono:h8"}
+  vim.opt.linespace=2
 	-- vim.opt.guifont = { "CodeNewRoman Nerd Font Mono", ":h12" }
-	-- vim.opt.guifont = { "Fira Code Nerd Font Mono", ":h10" }
   -- vim.opt.linespace = 8
-	vim.g.neovide_transparency = 0.96
+
+	-- vim.g.neovide_transparency = 0.96
 	vim.g.neovide_floating_blur_amount_x = 2.0
 	vim.g.neovide_floating_blur_amount_y = 2.0
 	vim.g.neovide_confirm_quit = false

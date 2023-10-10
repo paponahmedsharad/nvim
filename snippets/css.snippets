@@ -1,4 +1,7 @@
-#------------------------>  snippet ----------------------------->
+# #------------------------>  snippet ----------------------------->
+snippet ! "!important"
+	 !important
+
 snippet reset
 	* {
 	  margin: 0;
@@ -12,6 +15,7 @@ snippet reset
 	  font-family: "Poppins", sans-serif;
 	  font-size: 16px;
 	  line-height: 1.5;
+    scroll-behavior: smooth;
 	}
 
 	$1
@@ -25,7 +29,7 @@ snippet ccc
 
 #------------------------>  snippet ----------------------------->
 snippet bos
-	box-shadow: 0 4px 12px 0 rgba(11, 18, 15, 0.57);"
+	box-shadow: 0 4px 12px 0 rgba(11, 18, 15, 0.57);
 	$1
 
 #------------------------>  snippet ----------------------------->
@@ -80,3 +84,12 @@ snippet kft
       $3
     }
   }
+
+#--> grid-center
+snippet ogc
+  display: grid; place-items: center;       /* one line definitly centered layout */
+  $1
+
+snippet center
+  display: grid; place-items: center;       /* one line definitly centered layout */
+  $1

@@ -12,10 +12,10 @@ map({ "i", "c", "v", "s" }, "jk", [[<Esc>]])
 map({ "i", "c", "v", "s" }, "kj", [[<Esc>]])
 
 --> motion keys for insert mode
-map("i", "<C-h>", "<Left>",  { silent = true})
-map("i", "<C-l>", "<Right>", { silent = true})
-map("i", "<C-j>", "<Down>",  { silent = true})
-map("i", "<C-k>", "<Up>",    { silent = true})
+map("i", "<C-h>", "<Left>", { silent = true })
+map("i", "<C-l>", "<Right>", { silent = true })
+map("i", "<C-j>", "<Down>", { silent = true })
+map("i", "<C-k>", "<Up>", { silent = true })
 
 --> move between splits
 map("n", "<C-h>", "<C-w>h", opts)
@@ -32,7 +32,8 @@ map("n", "_", [[<cmd>horizontal resize -2<cr>]])
 --> Move to different buffers
 map("n", "<S-h>", "<cmd>bprevious<CR>", opts)
 map("n", "<S-l>", "<cmd>bnext<CR>", opts)
-map("n", "<Tab>", "<cmd>tabnext<CR>", opts)
+map("n", "<Tab>", "<cmd>bnext<CR>", opts)
+map("n", "<S-Tab>", "<cmd>tabnext<CR>", opts)
 
 --> insert a new line
 map({ "i", "s", "n" }, "fj", "<Esc>o", opts)
@@ -46,8 +47,8 @@ map({ "n" }, "df", [[:]])
 map({ "n" }, "fd", [[:]])
 
 --> quit and save
-map("n", "<leader>q", "<cmd>qall!<CR>", nosilent) --> quit all
-map({ "n" }, "<leader>w", "<cmd>w<CR>", opts) --> save
+map("n", "<leader>q", "<cmd>qall!<CR>", nosilent)  --> quit all
+map({ "n" }, "<leader>w", "<cmd>w<CR>", opts)      --> save
 map({ "n", "i" }, "<C-s>", "<cmd>w<CR>", nosilent) --> save
 
 --> move the line up/down left/right
@@ -136,20 +137,42 @@ vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 -- end
 
 -- vim.keymap.set("n", "<C-h>", nohlsearchh)
+
+-- Extra commands
+local cmd = vim.api.nvim_create_user_command
+-- Change working directory
+cmd("Cwd", function()
+  vim.cmd ":cd %:p:h"
+  vim.cmd ":pwd"
+end, { desc = "cd current file's directory" })
+
+-- Set working directory (alias)
+cmd("Swd", function()
+  vim.cmd ":cd %:p:h"
+  vim.cmd ":pwd"
+end, { desc = "cd current file's directory" })
 --──────────────────────────────────────────────────────────────────────
 -->                        Plugins keymaps
 --──────────────────────────────────────────────────────────────────────
 --> telescope
 map("n", "ff", ":Telescope find_files<CR>", opts) --> Find files
 map("n", "  ", ":Telescope find_files<CR>", opts) --> Find files
-map("n", "\\", ":Telescope oldfiles<CR>", opts) --> Find recent files
+map("n", "\\", ":Telescope oldfiles<CR>", opts)   --> Find recent files
+vim.keymap.set('n', '<leader>/', function()
+  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+    winblend = 10,
+    previewer = false,
+    layout_config = { height = 0.55 },
+  })
+end, { desc = '[/] Fuzzily search in current buffer' })
 
 --> Harpoon
 -- map("n", "<leader>aa", ':lua require("harpoon.mark").add_file()<CR>', opts)
-map("n", "<leader>m", ':lua require("harpoon.ui").toggle_quick_menu()<CR>', opts)
+-- map("n", "<leader>m", ':lua require("harpoon.ui").toggle_quick_menu()<CR>', opts)
 
 --> colorpicker
-vim.keymap.set({ "i", "n" }, "<C-p>", "<cmd>PickColorInsert<CR>", opts)
+-- vim.keymap.set({ "i", "n" }, "<C-p>", "<cmd>PickColorInsert<CR>", opts)
+vim.keymap.set({ "i", "n" }, "<C-p>", "<Esc><cmd>CccPick<CR>", opts)
 
 --> luaSnip
 -- map("i", "<A-n>", "<Plug>luasnip-next-choice", opts) -- todo
@@ -162,7 +185,8 @@ map({ "n", "i" }, "<A-c>", "<cmd>FzfLua registers<CR>", opts)
 -- map({ "n", "i" }, "<A-c>", "<cmd>FzfLua files<CR>", opts)
 
 --> telescope frecency
-vim.api.nvim_set_keymap( "n", ",,", "<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", ",,", "<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>",
+  { noremap = true, silent = true })
 
 --> LSP
 map("n", "gh", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
@@ -174,12 +198,10 @@ map("n", "<A-d>", "<cmd>lua vim.lsp.buf.definition()<CR>")
 -- map("n", "f", "<cmd>HopChar1<CR>")
 
 --> leap
-map({ "n", "x", "o" }, "f", "<Plug>(leap-forward-to)")
-vim.keymap.set(
-	{ "n", "i", "v" },
-	"<A-f>",
-	"<cmd> lua require('leap').leap { target_windows = vim.tbl_filter( function (win) return vim.api.nvim_win_get_config(win).focusable end, vim.api.nvim_tabpage_list_wins(0))}<CR>",
-	opts
+-- map({ "n", "x", "o" }, "f", "<Plug>(leap-forward-to)")
+vim.keymap.set({ "n", "i", "v" }, "<A-f>",
+  "<cmd> lua require('leap').leap { target_windows = vim.tbl_filter( function (win) return vim.api.nvim_win_get_config(win).focusable end, vim.api.nvim_tabpage_list_wins(0))}<CR>",
+  opts
 )
 
 --> cmp
@@ -188,7 +210,13 @@ map("i", "fd", "<cmd>lua require('cmp').confirm({ select = true })<CR>")
 
 --> lspsaga
 map("n", ";;", "<cmd>Lspsaga hover_doc<CR>", opts)
+map("n", "<C-d>", "<cmd>Lspsaga show_line_diagnostics ++unfocus<cr>", opts)
 
 --> Emmet
 map({ "i" }, "<A-;>", "<c-o>:Emmet ")
 map({ "n" }, "<A-;>", ":Emmet ")
+
+--> CodeRuner
+-- map("n", "<c-;>", "<cmd>RunCode<CR><c-w>k", opts)
+vim.keymap.set('n', '<c-;>',"<cmd>TermExec size=10 cmd='bun run %' direction=horizontal<cr>")
+

@@ -40,7 +40,7 @@ local setup = {
 	hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " },
 	show_help = true,
 	triggers = "auto",
-	triggers_blacklist = { i = { "j", "k" }, v = { "j", "k" }, n = { "g" } },
+	triggers_blacklist = { i = { "j", "k" }, v = { "j", "k" } },
 }
 local opts = {
 	mode = "n",
@@ -50,6 +50,7 @@ local opts = {
 	noremap = true,
 	nowait = true,
 }
+
 
 --──────────────────── MAPPINGS ────────────────────────
 local mappings = {
@@ -105,8 +106,8 @@ local mappings = {
 	r = {
 		name = "Run TS/JS",
 		-- z = { ":ZenMode<cr>", "Toggle Zen Mode" },
-		v = { "<cmd>TermExec size=40 cmd='deno run %' direction=vertical<cr>", "Run JS/TS vertical" },
-		h = { "<cmd>TermExec size=10 cmd='deno run %' direction=horizontal<cr>", "Run JS/TS horizontal" },
+		v = { "<cmd>TermExec size=40 cmd='bun run %' direction=vertical<cr>", "Run JS/TS vertical" },
+		h = { "<cmd>TermExec size=10 cmd='bun run %' direction=horizontal<cr>", "Run JS/TS horizontal" },
 	},
 
 	--───────────────── ZenMode ────────────────────────
@@ -210,3 +211,20 @@ local mappings = {
 
 which_key.setup(setup)
 which_key.register(mappings, opts)
+
+
+which_key.register({
+  [";;"] = { "<cmd>cd %:p:h<cr>", "Change dir", silent = true, mode = "n" },
+  [";e"] = { "<cmd>lua MiniFiles.open()<cr>", "open dir", silent = true, mode = "n" },
+  [";q"] = { "<cmd>lua MiniFiles.close()<cr>", "close dir", silent = true, mode = "n" },
+  [";f"] = { "<Cmd>Telescope frecency<CR>", "Frecency", silent = true, mode = "n" },
+  [";a"] = { "<Cmd>lua require('harpoon.mark').add_file()<CR>", "Harpoon add", silent = true, mode = "n" },
+  [";m"] = { "<Cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "Harpoon menu", silent = true, mode = "n" },
+
+
+  ["[h"] = { "<cmd>Lspsaga hover_doc<cr>", "Hover doc", silent = true, mode = "n" },
+  ["[d"] = { "<cmd>lua require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.ERROR })<cr>", "Diagnostic", silent = true, mode = "n" },
+  ["[w"] = { "<cmd>Lspsaga show_workspace_diagnostics ++normal<cr>", "workspace_diagnostics", silent = true, mode = "n" },
+  ["[f"] = { "<cmd>lua require('conform').format()<cr>", "Format", silent = true, mode = "n" },
+})
+

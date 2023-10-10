@@ -2,7 +2,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
-autocmd TextChanged,TextChangedI <buffer> silent write
+" autocmd TextChanged,TextChangedI <buffer> silent write
 
 " RUN THE CODE IN A TERMINAL
 "Node
