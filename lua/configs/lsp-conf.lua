@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 require('mason').setup()
 require('mason-lspconfig').setup({
   -- ensure_installed = { "lua_ls", "cssls", "html", "tsserver", "pyright", "quick_lint_js", "tailwindcss", }
-  ensure_installed = { "lua_ls", "cssls", "html", "pyright", "quick_lint_js", "tailwindcss", }
+  ensure_installed = { "cssls", "html", "pyright", "quick_lint_js", "tailwindcss","rnix" }
 })
 
 local lspconfig = require('lspconfig')
@@ -130,6 +130,7 @@ lspconfig.lua_ls.setup {
 --     }
 -- end
 
+
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = "astro,css,eruby,html,htmldjango,javascriptreact,less,pug,sass,scss,svelte,typescriptreact,vue",
   callback = function()
@@ -157,3 +158,4 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     })
   end,
 })
+

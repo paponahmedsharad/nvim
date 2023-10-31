@@ -47,9 +47,11 @@ map({ "n" }, "df", [[:]])
 map({ "n" }, "fd", [[:]])
 
 --> quit and save
-map("n", "<leader>q", "<cmd>qall!<CR>", nosilent)  --> quit all
+-- map("n", "<leader>q", "<cmd>qall!<CR>", nosilent)  --> quit all
 map({ "n" }, "<leader>w", "<cmd>w<CR>", opts)      --> save
 map({ "n", "i" }, "<C-s>", "<cmd>w<CR>", nosilent) --> save
+vim.cmd[[command! W execute 'w !sudo tee % > /dev/null' <bar> edit!]]
+
 
 --> move the line up/down left/right
 map("v", "H", "<gv", opts)
@@ -64,6 +66,9 @@ map("n", "<S-Right>", "<cmd>vsplit<CR>", opts)
 
 --> Better paste
 map("v", "p", '"_dP', opts)
+
+--> Remove height
+map("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
 
 --> remove all keymaps for for all modes
 map("n", "<leader>rk", "<cmd>mapclear<CR><cmd>imapclear<CR>", opts)

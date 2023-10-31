@@ -31,6 +31,21 @@ local overWriteColors = {
    -- TelescopeMatching   ="guifg=#e6e600 gui=bold",
    MiniIndentscopeSymbol = "guifg=#666699",
    IndentBlanklineChar   = "guifg=#2a2929",-- }}}
+
+  -- WhichKey            Function      the key
+  -- WhichKeyGroup       Keyword       a group
+  -- WhichKeySeparator   DiffAdd       the separator between the key and its
+  -- WhichKeyDesc        Identifier    the label of the key
+  -- WhichKeyFloat       NormalFloat   Normal in the popup window
+  -- WhichKeyBorder      FloatBorder   Normal in the popup window
+  -- WhichKeyValue       Comment       used by plugins that provide values
+
+    -- WhichKey            = "guifg=#ff00cc gui=bold",
+    WhichKey            = "guifg=#b300f5 gui=bold",
+    WhichKeyGroup       = "guifg=#d9a74a ",
+    WhichKeySeparator    = "guifg=#4d4d4d",
+    WhichKeyDesc        = "guifg=#9f85cf",
+    -- WhichKeyValue        = "guifg=#e63300",
 }
 
 for k,v in pairs(overWriteColors) do
@@ -109,10 +124,10 @@ end
 --}}}
 
 ----> no statusline
-vim.cmd([[
-set laststatus=0
-set statusline=%{repeat('─',winwidth('.'))}
-]])
+-- vim.cmd([[
+-- set laststatus=0
+-- set statusline=%{repeat('─',winwidth('.'))}
+-- ]])
 
 -- Show cursor only on current window
 vim.cmd[[

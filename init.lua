@@ -9,15 +9,14 @@ require("configs.cmp")
 require("configs.luasnip")
 require("configs.toggleterm")
 require("configs.comment")
-require("configs.tabby")
 require("configs.lsp-conf")
 require("configs.input").setup()
 require("configs.colorscheme")
-require("code_runner").setup { term = { size = 4 }, }
+require("code_runner").setup({ term = { size = 4 } })
+
+-- require("configs.tabby")
 -- require("configs.lsp")
 -- require("configs.statusline")
 -- require("configs.chatbot")
 -- require("leap").add_default_mappings()
 -- require("configs.knap")
-
-

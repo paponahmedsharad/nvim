@@ -135,9 +135,9 @@ if vim.g.neovide then
 
 
 	-- vim.opt.guifont = { "Comic Mono", ":h8" }
-  vim.opt.guifont={"Victor Mono","Cascadia Mono Light","Comic Mono,FiraCode Nerd Font MonoComicMono Nerd Font, Victor Mono:h8"}
-  vim.opt.linespace=2
-	-- vim.opt.guifont = { "CodeNewRoman Nerd Font Mono", ":h12" }
+  -- vim.opt.guifont={"Victor Mono","FiraCode Nerd Font Mono","Comic Mono,FiraCode Nerd Font MonoComicMono Nerd Font, Victor Mono:h4"}
+  vim.opt.linespace=0.0
+	vim.opt.guifont = { "CodeNewRoman Nerd Font Mono", ":h11" }
   -- vim.opt.linespace = 8
 
 	-- vim.g.neovide_transparency = 0.96
@@ -148,7 +148,7 @@ if vim.g.neovide then
 	-- vim.g.neovide_no_idle = true
 
 	--> the the scale factor
-	vim.g.neovide_scale_factor = 1.0
+	vim.g.neovide_scale_factor = 0.8
 	local change_scale_factor = function(delta)
 		vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
 	end

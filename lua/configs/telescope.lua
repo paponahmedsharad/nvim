@@ -4,7 +4,7 @@ if not status_ok then
 end
 
 local actions = require("telescope.actions")
-telescope.load_extension("frecency")
+--telescope.load_extension("frecency")
 telescope.load_extension("file_browser")
 telescope.load_extension("harpoon")
 telescope.load_extension("media_files")
