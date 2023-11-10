@@ -205,8 +205,8 @@ local mappings = {
 		m = { "<cmd>Telescope  media_files<cr>", "Media Files" },
 		z = { "<cmd>FzfLua files<cr>", "Fzf Files" },
 		c = { "<cmd>let @+=expand('%:p')<cr>", "Copy path" },
-		a = { "<cmd>lua require('harpoon.mark').add_file()<CR>", "Harpoon add" },
-		M = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "Harpoon marks" },
+		-- a = { "<cmd>lua require('harpoon.mark').add_file()<CR>", "Harpoon add" },
+		-- M = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "Harpoon marks" },
 	},
 	--────────────────── packer ────────────────────────
 	p = {
@@ -289,8 +289,10 @@ which_key.register({
   [";e"] = { "<cmd>lua MiniFiles.open()<cr>", "open dir", silent = true, mode = "n" },
   [";q"] = { "<cmd>lua MiniFiles.close()<cr>", "close dir", silent = true, mode = "n" },
   [";f"] = { "<Cmd>Telescope frecency<CR>", "Frecency", silent = true, mode = "n" },
-  [";a"] = { "<Cmd>lua require('harpoon.mark').add_file()<CR>", "Harpoon add", silent = true, mode = "n" },
-  [";m"] = { "<Cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "Harpoon menu", silent = true, mode = "n" },
+  -- [";a"] = { "<Cmd>lua require('harpoon.mark').add_file()<CR>", "Harpoon add", silent = true, mode = "n" },
+  -- [";m"] = { "<Cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "Harpoon menu", silent = true, mode = "n" },
+  [";a"] = { "<Cmd>lua require('harpoon-core.mark').add_file()<CR>", "Harpoon add", silent = true, mode = "n" },
+  [";m"] = { "<Cmd>lua require('harpoon-core.ui').toggle_quick_menu()<CR>", "Harpoon menu", silent = true, mode = "n" },
 
 
   ["[h"] = { "<cmd>Lspsaga hover_doc<cr>", "Hover doc", silent = true, mode = "n" },

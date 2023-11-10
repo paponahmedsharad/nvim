@@ -628,7 +628,7 @@ require("lazy").setup({
     end,
     opts = {
       doc_width = 80, -- width of the document
-      box_width = 80, -- width of the boxes
+      box_width = 70, -- width of the boxes
       borders = { -- symbols used to draw a box
         top = "─",
         bottom = "─",

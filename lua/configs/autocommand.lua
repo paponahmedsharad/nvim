@@ -95,6 +95,19 @@ autocmd("BufReadPost", {
     ]],
 })
 
+
+-- Auto create dir when saving a file, in case some intermediate directory does not exist
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  group = vim.api.nvim_create_augroup("auto_create_dir", { clear = true }),
+  callback = function(event)
+    if event.match:match("^%w%w+://") then
+      return
+    end
+    local file = vim.loop.fs_realpath(event.match) or event.match
+    vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+  end,
+})
+
 --[[ autocmd("BufReadPost", {
 	callback = function()
 		if fn.line("'\"") > 1 and fn.line("'\"") <= fn.line("$") then
@@ -144,9 +157,6 @@ autocmd("BufReadPost", {
 -- 	command = "FormatWrite",
 -- })
 
---> hide statusline when i am reading help doc
--- vim.cmd([[autocmd BufRead */doc/*.txt lua vim.o.ls=0, lua vim.o.ch=0]])
--- vim.cmd([[autocmd BufLeave */doc/*.txt lua vim.o.ls=2, lua vim.o.ch=1]])
 
 --> lspsaga
 -- vim.cmd([[autocmd CursorHold *.js,*.ts,*.lua :Lspsaga show_line_diagnostics]])
