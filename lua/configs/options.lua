@@ -120,6 +120,7 @@ o.formatoptions:remove({ "c", "r", "o" }) -- This is a sequence of letters which
 o.fillchars = { eob = " " } --> hide ~ at the end of the buffer
 o.fillchars:append("fold: ") --> hide the fold marker
 -- no messages
+vim.cmd[[set fillchars+=foldopen:⊟,foldsep:│,foldclose:⊞]]
 
 -- vim.opt.statuscolumn="%@SignCb@%s%=%T%@NumCb@%l │  %T"
 -- vim.opt.statuscolumn="%@SignCb@%s%=%T%@NumCb@%l │  %T"

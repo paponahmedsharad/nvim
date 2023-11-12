@@ -236,7 +236,8 @@ require("lazy").setup({
 		"echasnovski/mini.indentscope",
 		event = { "BufReadPre", "BufNewFile" },
 		opts = {
-			symbol = "│", -- symbol = "▏",
+			-- symbol = "│", -- symbol = "▏",
+      symbol = '▏',
 			options = { try_as_border = true },
 		},
 		config = function(_, opts)

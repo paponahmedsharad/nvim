@@ -18,6 +18,7 @@ local overWriteColors = {
     StatusLineNC        = "guifg=#356191 guibg=Normal",             --> statusline of non-current window
     -- signcolumn          = "guibg=#1a1b26",                          --> signcolumn color
     SignColumn          = "guibg=#1a1b26",                          --> signcolumn color
+    FoldColumn          = "guifg=#6c4d99",                          --> signcolumn sign color
     -- SignColumn          = "guibg=#282C34",                          --> signcolumn color
     FloatBorder         = "guifg=#2a2b36",                          --> floting window border
     TabLine             = "guibg=#1a1b26 guifg=#3a3b36 gui=NONE",   --> tab pages line, not active tab page label
@@ -46,6 +47,8 @@ local overWriteColors = {
     WhichKeySeparator    = "guifg=#4d4d4d",
     WhichKeyDesc        = "guifg=#9f85cf",
     -- WhichKeyValue        = "guifg=#e63300",
+
+    MiniIndentscopeSymbol = "guifg=#3a4b57",
 }
 
 for k,v in pairs(overWriteColors) do
