@@ -127,7 +127,7 @@ ins_left({
 
 ins_left({
 	"filename",
-	icon = " ",
+	icon = " ",
 	cond = conditions.buffer_not_empty,
 	color = function()
 		local mode_color = {
@@ -162,7 +162,7 @@ ins_left({
 
 ins_left({
 	"progress",
-	icon = "",
+	icon = "",
 	-- color = { fg = colors.green, gui = '' },
 	color = function()
 		local mode_color = {

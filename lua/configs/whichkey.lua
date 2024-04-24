@@ -6,7 +6,7 @@ end
 local setup = {
 	plugins = {
 		marks = true,
-		registers = true,
+		registers = false,
 		spelling = { enabled = false, suggestions = 20 },
 		presets = {
 			operators = false,
@@ -53,65 +53,7 @@ local opts = {
 }
 -- }}}
 
-    -- ["<leader>"] = {
-
-    --   -- stylua: ignore start
-    --   [" "] = { name = " Quick"             },
-    --   a     = { name = " AI"                }, --   󰧑
-    --   b     = { name = "󱂬 Buffer"            },
-    --   c     = { name = "󱃖 Code"              },
-    --   cl    = { name = "󰡱 LeetCode"          },
-    --   cm    = { name = " Markdown"          },
-    --   cp    = { name = " Cpp"               }, --   󰙲
-    --   cs    = { name = "󱝆 Surf"              },
-    --   cx    = { name = "󱣘 Cargo.toml"        },
-    --   cz    = { name = " Snippet"           },
-    --   d     = { name = " Debug"             },
-    --   e     = { name = " Edit"              }, -- TODO: Move these to their groups
-    --   f     = { name = " Find"              },
-    --   fu    = { name = "󰌷 URL"               },
-    --   g     = { name = " Git"               },
-    --   gh    = { name = " GitHub"            },
-    --   ghc   = { name = " Card"              },
-    --   ghi   = { name = " Issue"             },
-    --   ghj   = { name = " Comment"           },
-    --   gho   = { name = "󱓨 Assignee"          },
-    --   ghp   = { name = " Repo"              },
-    --   ghn   = { name = "󰓂 PR"                },
-    --   ghr   = { name = " Review"            },
-    --   ghl   = { name = "󰌕 Label"             },
-    --   ght   = { name = "󱇫 Thread"            },
-    --   ghu   = { name = " React"             },
-    --   h     = { name = "󱕘 Harpoon"           },
-    --   -- i     = { name = " Automation"        },
-    --   i     = { name = " Sniprun"           },
-    --   io    = { name = " Open"              },
-    --   j     = { name = " Join"              },
-    --   k     = { name = " Color"             },
-    --   l     = { name = "󱃕 Lists"             },
-    --   lt    = { name = " TODO"              },
-    --   m     = { name = " Modes"             },
-    --   ml    = { name = "󰉦 Lush"              },
-    --   mk    = { name = "󰓫 Table"             },
-    --   n     = { name = " Compiler Explorer" }, -- 
-    --   nt    = { name = "󱘎 TreeSitter"        },
-    --   o     = { name = " Open"              },
-    --   p     = { name = " Profile"           }, -- 
-    --   pl    = { name = "󱑤 Load"              },
-    --   q     = { name = "󰗼 Quit"              },
-    --   r     = { name = " Run"               },
-    --   rq    = { name = " LeetCode"          },
-    --   s     = { name = " LSP"               },
-    --   t     = { name = "󰙨 Test"              },
-    --   u     = { name = "󰚰 Update"            },
-    --   v     = { name = " Games"             },
-    --   w     = { name = " Workspace"         },
-    --   x     = { name = " External"          },
-    --   y     = { name = "󱘣 Neoclip"           },
-    --   z     = { name = " Neorg"             },
-    --   -- stylua: ignore end
-    -- },
-
+-- local Symbols= "✓ ✔ ☑ ✅ ✘ ☓ ✗ ✕ ✖ ☒   󱂬 󱃖 󰡱   󱝆 󱣘     󰌷      󱓨  󰓂  󰌕 󱇫  󱕘 =     󱃕   󰉦 󰓫  󱘎   󱑤 󰗼    󰙨 󰚰    󱘣  "
 --──────────────────── MAPPINGS ────────────────────────
 local mappings = {
 	["e"] = { "<cmd>Neotree toggle<CR>", "Explorer" },
@@ -137,9 +79,10 @@ local mappings = {
 		m = { ":MindOpenMain<cr>",    "Mind main" },
 		p = { ":MindOpenProject<cr>", "Mind Projects" },
 		c = { ":MindClose<cr>",       "Mind Close" },
+		t = { ":e /tmp/tmp-note.md<cr>",       "Tmp Note" },
 	},
 
-	--─────────────────── Note ─────────────────────────
+	--─────────────────── Lspsaga ─────────────────────────
 	j = {
 		name = "󱃖 Code",
 		r = { "<cmd>Lspsaga rename ++project<cr>",      "rename" },
@@ -181,6 +124,9 @@ local mappings = {
 		-- z = { ":ZenMode<cr>", "Toggle Zen Mode" },
 		v = { "<cmd>TermExec size=40 cmd='bun run %' direction=vertical<cr>", "Run JS/TS vertical" },
 		h = { "<cmd>TermExec size=10 cmd='bun run %' direction=horizontal<cr>", "Run JS/TS horizontal" },
+		r = { "<cmd>lua require'configs.codeRuner'.run() <cr>", "Run code horizontal" },
+		j = { "<cmd>lua require'ranar'.run() <cr>", "Run code horizontal" }, --TODO
+		t = { "<cmd>ToggleTerm<cr>", "Toggle code runner" },
 	},
 
 	--───────────────── ZenMode ────────────────────────
@@ -191,6 +137,7 @@ local mappings = {
     m = { "<cmd> TZMinimalist<CR>",   "Minimalist Mode" },
     a = { "<cmd> TZAtaraxis<CR>",     "Atarix Mode"     },
     c = { "<cmd> set cmdheight=0<CR>","No visible cmd_line"     },
+    w = { "<cmd> set columns=120 wrap linebreak<CR>","Wrap"     },
 	},
 	--────────────────── telescope ────────────────────────
 	f = {
@@ -323,6 +270,12 @@ which_key.register({
         c = { '<cmd>lua require("comment-box").lcbox(vim.fn.input "Catalog: ")<cr>', "Left-Centered text with style:",  silent = true },
         l = { '<cmd>lua require("comment-box").llbox(vim.fn.input "Catalog: ")<cr>', "Left-Left text with style:",      silent = true },
       },
+    },
+
+    y = {
+      name = "+yank",mode = {"v","n"},
+      a = { '<cmd>norm "ay<cr>',                                                    "Yank to register a",  silent = true },
+      p = { '<cmd>norm "ap<cr>',                                                    "Yank to register a",  silent = true },
     },
   },
 })

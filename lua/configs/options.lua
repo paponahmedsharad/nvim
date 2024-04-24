@@ -4,7 +4,7 @@
 local options = {
 	ttyfast = true,
 	termguicolors = true,
-    -- numberwidth = 6,
+  numberwidth = 1,
   foldcolumn='2',
   -- guicursor="n:blinkon20",
   guicursor= "i-ci:ver30-iCursor-blinkwait100-blinkon200-blinkoff150",
@@ -119,9 +119,11 @@ o.iskeyword:append({ "-" }) --> treats words with `-` as single words
 o.formatoptions:remove({ "c", "r", "o" }) -- This is a sequence of letters which describes how automatic formatting is to be done
 o.fillchars = { eob = " " } --> hide ~ at the end of the buffer
 o.fillchars:append("fold: ") --> hide the fold marker
--- no messages
-vim.cmd[[set fillchars+=foldopen:⊟,foldsep:│,foldclose:⊞]]
+-- no messages    ",
+-- vim.cmd[[set fillchars+=foldopen:⊟,foldsep:│,foldclose:⊞]]
+vim.cmd[[set fillchars+=foldopen:,foldsep:│,foldclose:]]
 
+-- vim.opt.fillchars = { foldclose = "", foldopen = "", vert = "▏", fold = " ", diff = "░", msgsep = "‾", foldsep = "▏" }
 -- vim.opt.statuscolumn="%@SignCb@%s%=%T%@NumCb@%l │  %T"
 -- vim.opt.statuscolumn="%@SignCb@%s%=%T%@NumCb@%l │  %T"
 -- vim.opt.statuscolumn="%@SignCb@%s%=%T%@NumCb@%l ▊ %T"
@@ -138,7 +140,7 @@ if vim.g.neovide then
 	-- vim.opt.guifont = { "Comic Mono", ":h8" }
   -- vim.opt.guifont={"Victor Mono","FiraCode Nerd Font Mono","Comic Mono,FiraCode Nerd Font MonoComicMono Nerd Font, Victor Mono:h4"}
   vim.opt.linespace=0.0
-	vim.opt.guifont = { "CodeNewRoman Nerd Font Mono", ":h11" }
+	vim.opt.guifont = { "CodeNewRoman Nerd Font Mono", ":h14" }
   -- vim.opt.linespace = 8
 
 	-- vim.g.neovide_transparency = 0.96
@@ -149,7 +151,7 @@ if vim.g.neovide then
 	-- vim.g.neovide_no_idle = true
 
 	--> the the scale factor
-	vim.g.neovide_scale_factor = 0.8
+	-- vim.g.neovide_scale_factor = 0.8
 	local change_scale_factor = function(delta)
 		vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
 	end

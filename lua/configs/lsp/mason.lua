@@ -4,7 +4,7 @@ local servers = {
 	"html",
 	"tsserver",
 	"pyright",
-	"quick_lint_js",
+	-- "quick_lint_js",
   "tailwindcss",
 	-- "emmet_ls",
 }

@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 require('mason').setup()
 require('mason-lspconfig').setup({
   -- ensure_installed = { "lua_ls", "cssls", "html", "tsserver", "pyright", "quick_lint_js", "tailwindcss", }
-  ensure_installed = { "cssls", "html", "pyright", "quick_lint_js", "tailwindcss","rnix" }
+  ensure_installed = { "cssls", "html", "pyright", "tailwindcss","rnix" }
 })
 
 local lspconfig = require('lspconfig')

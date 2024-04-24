@@ -14,8 +14,8 @@ local overWriteColors = {
     Search              = "guibg=#2c3841",                          --> search text color
     comment             = "guifg=#5f4f5f",                          --> comment color
     MatchParen          = "guibg=#2f3c41 guifg=#80b3e6",            --> MatchParen ('()') color
-    Statusline          = "guifg=#356191 guibg=Normal",             --> statusline of current window
-    StatusLineNC        = "guifg=#356191 guibg=Normal",             --> statusline of non-current window
+    -- Statusline          = "guifg=#356191 guibg=Normal",             --> statusline of current window
+    -- StatusLineNC        = "guifg=#356191 guibg=Normal",             --> statusline of non-current window
     -- signcolumn          = "guibg=#1a1b26",                          --> signcolumn color
     SignColumn          = "guibg=#1a1b26",                          --> signcolumn color
     FoldColumn          = "guifg=#6c4d99",                          --> signcolumn sign color

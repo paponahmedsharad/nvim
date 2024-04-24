@@ -223,5 +223,5 @@ map({ "n" }, "<A-;>", ":Emmet ")
 
 --> CodeRuner
 -- map("n", "<c-;>", "<cmd>RunCode<CR><c-w>k", opts)
-vim.keymap.set('n', '<c-;>',"<cmd>TermExec size=10 cmd='bun run %' direction=horizontal<cr>")
+-- vim.keymap.set('n', '<c-;>',"<cmd>TermExec size=10 cmd='bun run %' direction=horizontal<cr>")
 
