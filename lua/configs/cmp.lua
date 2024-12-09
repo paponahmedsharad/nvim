@@ -17,8 +17,10 @@ end ]]
 --> border color
 -- vim.cmd("highlight! BorderBG                    guibg=NONE guifg=#004d80")
 vim.cmd("highlight! BorderBG                    guibg=NONE guifg=#50518e")
-vim.cmd("highlight! PmenuSel                    guibg=#272a43  guifg=NONE")
-vim.cmd("highlight! PmenuThumb                  ctermbg=Black guibg=#24273f")
+-- vim.cmd("highlight! Pmenu                       guibg=#383e4a  guifg=#000000")
+vim.cmd("highlight! PmenuSel                    guibg=#3e4554  guifg=NONE")
+vim.cmd("highlight! PmenuThumb                  ctermbg=Black  guibg=#24273f")
+
 --> cmp-menu colors
 vim.api.nvim_set_hl(0, "CmpItemMenu",           { fg = "#43427d", bg = "NONE" })
 vim.api.nvim_set_hl(0, "CmpItemKindVariable",   { fg = "#4d4db3", bg = "NONE" })

@@ -1,465 +1,259 @@
---───────────── modified version of evil ───────────────
-local status_ok, lualine = pcall(require, "lualine")
-if not status_ok then
-	return
-end
-
 local colors = {
-	-- bg = "#232635",
-	-- bg = "#1f1e2d",
-	bg = "#1a1b26",
-	bg1 = "#202328",
-	ibg = "#1a1b26",
-	fg = "#5da2c1",
-	yellow = "#ECBE7B",
-	cyan = "#005f6e",
-	cyanorginal = "#00717b",
-	darkblue = "#081633",
-	green = "#98be65",
-	orange = "#FF8800",
-	violet = "#a9a1e1",
-	magenta = "#c678dd",
-	blue = "#51afef",
-	red = "#ec5f67",
-	tokyobright = "#324a4e",
-	file = "#98d799",
+  -- bg          = "#2f3541",
+  transparent = "None", ---> bcakground color
+  black       = "#111111",
+  black1       = "#222222",
+  black2       = "#282828",
+  background1 = "#3B4252",
+  background2 = "#454c5c",
+  background3 = "#666666",
+  yellow      = "#ECBE7B",
+  cyan        = "#005f6e",
+  cyanorginal = "#00717b",
+  darkblue    = "#081633",
+  green       = "#98be65",
+  blue        = "#51afef",
+  gray2       = "#51afef",
+  red         = "#ec5f67",
+  white       = "#000",
 }
 
-local conditions = {
-	buffer_not_empty = function()
-		return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
-	end,
-	hide_in_width = function()
-		return vim.fn.winwidth(0) > 80
-	end,
-	check_git_workspace = function()
-		local filepath = vim.fn.expand("%:p:h")
-		local gitdir = vim.fn.finddir(".git", filepath .. ";")
-		return gitdir and #gitdir > 0 and #gitdir < #filepath
-	end,
+local modecolor = {
+  n          = colors.background2,
+  i          = colors.red,
+  v          = colors.purple,
+  [""]     = colors.purple,
+  V          = colors.red,
+  c          = colors.yellow,
+  no         = colors.red,
+  s          = colors.yellow,
+  S          = colors.yellow,
+  [""]     = colors.yellow,
+  ic         = colors.yellow,
+  R          = colors.green,
+  Rv         = colors.purple,
+  cv         = colors.red,
+  ce         = colors.red,
+  r          = colors.cyan,
+  rm         = colors.cyan,
+  ["r?"]     = colors.cyan,
+  ["!"]      = colors.red,
+  t          = colors.file,
 }
 
---───────────────── CUSTOM CONFIG ──────────────────────
-local config = {
-	options = {
-		component_separators = "",
-		section_separators = "",
-		theme = {
-			normal = { c = { fg = colors.fg, bg = colors.bg } },
-			inactive = { c = { fg = colors.fg, bg = colors.ibg } },
-			insert = { c = { fg = colors.fg, bg = colors.ibg } },
-			command = { c = { fg = colors.fg, bg = colors.bg } },
-		},
-	},
-	sections = {
-		-- these are to remove the defaults
-		lualine_a = {},
-		lualine_b = {},
-		lualine_y = {},
-		lualine_z = {},
-		-- These will be filled later
-		lualine_c = {},
-		lualine_x = {},
-	},
-	inactive_sections = {
-		-- these are to remove the defaults
-		lualine_a = {},
-		lualine_b = {},
-		lualine_y = {},
-		lualine_z = {},
-		lualine_c = {},
-		lualine_x = {},
-	},
+local theme = {
+  normal = {
+    a = { fg = colors.black, bg = colors.blue },
+    b = { fg = colors.blue, bg = colors.background2 },
+    c = { fg = colors.black, bg = colors.transparent },
+    z = { fg = colors.black, bg = colors.background2 },
+  },
+  insert = { a = { fg = colors.black, bg = colors.orange } },
+  visual = { a = { fg = colors.black, bg = colors.background2 } },
+  replace = { a = { fg = colors.black, bg = colors.background2 } },
 }
 
--- Inserts a component in lualine_c at left section
-local function ins_left(component)
-	table.insert(config.sections.lualine_c, component)
+local space = {
+  function()
+    return " "
+  end,
+  color = { bg = colors.transparent, fg = colors.bg },
+  padding = { right = -1, left = 0 },
+}
+
+local modes = {
+  "mode",
+  color = function()
+    local mode_color = modecolor
+    return { bg = mode_color[vim.fn.mode()], fg = colors.black1, gui = "bold" }
+  end,
+  separator = { left = "", right = "" },
+}
+
+local filename = {
+  "filename",
+  color = { bg = colors.blue, fg = colors.bg, gui = "bold" },
+  separator = { left = "", right = "" },
+}
+
+local filetype = {
+  "filetype",
+  icons_enabled = false,
+  color = { bg = colors.cyan, fg = colors.bg, gui = "italic,bold" },
+  separator = { left = "", right = "" },
+}
+
+local branch = {
+  "branch",
+  icon = "",
+  separator = { left = "", right = "" },
+  -- color = { bg = colors.green, fg = colors.bg, gui = "bold" },
+  color = function()
+    local fg_color = { n = colors.black, i = colors.black }
+    local bg_color = { n = colors.background2, i = colors.background2, V = colors.background2 }
+    return { fg = fg_color[vim.fn.mode()], bg = bg_color[vim.fn.mode()] }
+  end,
+}
+
+local location = {
+  "location",
+  separator = { left = "", right = "" },
+  color = function()
+    local fg_color = { n = colors.black, i = colors.black }
+    local bg_color = { n = colors.background1, i = colors.background1, V = colors.background1 }
+    return { fg = fg_color[vim.fn.mode()], bg = bg_color[vim.fn.mode()] }
+  end,
+}
+
+local diff = {
+  "diff",
+  -- color = { bg = colors.cyan, fg = colors.bg, gui = "bold" },
+  color = function()
+    local fg_color = { n = colors.black2, i = colors.black2 }
+    local bg_color = { n = colors.background1, i = colors.background1, V = colors.background1 }
+    return { fg = fg_color[vim.fn.mode()], bg = bg_color[vim.fn.mode()] }
+  end,
+  separator = { left = "", right = "" },
+  symbols = { added = " ", modified = " ", removed = " " },
+
+  diff_color = {
+    added = { fg = colors.black2 },
+    modified = { fg = colors.black2 },
+    removed = { fg = colors.black2 },
+  },
+}
+
+
+local function getLspName()
+  local buf_clients = vim.lsp.buf_get_clients()
+  local buf_ft = vim.bo.filetype
+  if next(buf_clients) == nil then
+    return "  No servers"
+  end
+  local buf_client_names = {}
+
+  for _, client in pairs(buf_clients) do
+    if client.name ~= "null-ls" then
+      table.insert(buf_client_names, client.name)
+    end
+  end
+
+  local lint_s, lint = pcall(require, "lint")
+  if lint_s then
+    for ft_k, ft_v in pairs(lint.linters_by_ft) do
+      if type(ft_v) == "table" then
+        for _, linter in ipairs(ft_v) do
+          if buf_ft == ft_k then
+            table.insert(buf_client_names, linter)
+          end
+        end
+      elseif type(ft_v) == "string" then
+        if buf_ft == ft_k then
+          table.insert(buf_client_names, ft_v)
+        end
+      end
+    end
+  end
+
+  local ok, conform = pcall(require, "conform")
+  local formatters = table.concat(conform.list_formatters_for_buffer(), " ")
+  if ok then
+    for formatter in formatters:gmatch("%w+") do
+      if formatter then
+        table.insert(buf_client_names, formatter)
+      end
+    end
+  end
+
+  local hash = {}
+  local unique_client_names = {}
+
+  for _, v in ipairs(buf_client_names) do
+    if not hash[v] then
+      unique_client_names[#unique_client_names + 1] = v
+      hash[v] = true
+    end
+  end
+  local language_servers = table.concat(unique_client_names, ", ")
+
+  return "  " .. language_servers
 end
 
--- Inserts a component in lualine_x ot right section
-local function ins_right(component)
-	table.insert(config.sections.lualine_x, component)
-end
+local macro = {
+  -- require("noice").api.status.mode.get,
+  -- cond = require("noice").api.status.mode.has,
+  -- color = { fg = colors.red, bg = colors.bg_dark, gui = "italic,bold" },
+}
 
---───────────────── component config ──────────────────────
--- ins_left {
---   function()
---     return "▊"
---   end,
---   color = function()
---     local mode_color = {
---       n = colors.bg,
---       i = colors.ibg,
---       c = colors.bg,
---       s = colors.bg,
---     }
---     return { fg = mode_color[vim.fn.mode()] }
---   end,
---   padding = { right = 1 },
--- }
+local dia = {
+  "diagnostics",
+  sources = { "nvim_diagnostic" },
+  symbols = { error = " ", warn = " ", info = " ", hint = " " },
+  diagnostics_color = {
+    error = { fg = colors.red },
+    warn = { fg = colors.black },
+    info = { fg = colors.purple },
+    hint = { fg = colors.cyan },
+  },
+  -- color = { bg = colors.gray2, fg = colors.blue, gui = "bold" },
+  color = function()
+    local fg_color = { n = colors.black, i = colors.black, V = colors.black }
+    local bg_color = { n = colors.background1, i = colors.background1, V = colors.background1}
+    return { fg = fg_color[vim.fn.mode()], bg = bg_color[vim.fn.mode()] }
+  end,
+  separator = { left = "" },
+}
 
-ins_left({
-	function()
-		-- return '⬤ '
-		return " "
-	end,
-	color = function()
-		local mode_color = {
-			n = "#809933",
-			i = colors.ibg,
-			v = colors.blue,
-			[""] = colors.blue,
-			V = colors.blue,
-			[""] = colors.black,
-			r = colors.cyan,
-			["r?"] = colors.cyan,
-			["!"] = colors.red,
-			no = colors.red,
-			t = colors.red,
-			c = colors.bg,
-			s = colors.ibg,
-		}
-		return { fg = mode_color[vim.fn.mode()] }
-	end,
-	padding = { left = 1 },
+local lsp = {
+  function()
+    return getLspName()
+  end,
+  separator = { left = "", right = "" },
+  -- color = { bg = colors.purple, fg = colors.bg, gui = "italic,bold" },
+  color = function()
+    local fg_color = { n = colors.black, i = colors.black }
+    local bg_color = { n = colors.background2, i = colors.background2 }
+    return { fg = fg_color[vim.fn.mode()], bg = bg_color[vim.fn.mode()] }
+  end,
+}
+
+require("lualine").setup({
+  options = {
+    icons_enabled = true,
+    theme = theme,
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {}, },
+    ignore_focus = {},
+    always_divide_middle = true,
+    globalstatus = true,
+  },
+
+  sections = {
+    lualine_a = { modes },
+    lualine_b = { space },
+    lualine_c = {
+      -- filename,
+      -- filetype,
+      -- space,
+      branch,
+      diff,
+      space,
+      location,
+    },
+    lualine_x = { space },
+    -- lualine_y = { macro, space },
+    lualine_y = { space },
+    lualine_z = { dia, lsp },
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = { "filename" },
+    lualine_x = { "location" },
+    lualine_y = {},
+    lualine_z = {},
+  },
 })
-
-ins_left({
-	"filename",
-	icon = " ",
-	cond = conditions.buffer_not_empty,
-	color = function()
-		local mode_color = {
-			n = colors.cyanorginal,
-			i = colors.ibg,
-			v = colors.blue,
-			[""] = colors.blue,
-			V = colors.blue,
-			c = colors.bg,
-			s = colors.ibg,
-		}
-		return { fg = mode_color[vim.fn.mode()], gui = "bold" }
-	end,
-})
-
-ins_left({
-	"filesize",
-	-- icon = '--> size:',
-	icon = " size:",
-	-- icon = '➥➩⍈ size:',
-	cond = conditions.buffer_not_empty,
-	color = function()
-		local mode_color = {
-			n = colors.tokyobright,
-			i = colors.ibg,
-			c = colors.bg,
-			s = colors.ibg,
-		}
-		return { fg = mode_color[vim.fn.mode()] }
-	end,
-})
-
-ins_left({
-	"progress",
-	icon = "",
-	-- color = { fg = colors.green, gui = '' },
-	color = function()
-		local mode_color = {
-			n = colors.cyan,
-			i = colors.ibg,
-			c = colors.bg,
-			s = colors.ibg,
-		}
-		return { fg = mode_color[vim.fn.mode()] }
-	end,
-})
-
-ins_left({
-	function()
-		return " "
-	end,
-	color = function()
-		local mode_color = {
-			n = colors.cyan,
-			i = colors.tokyo,
-			v = colors.blue,
-			[""] = colors.blue,
-			V = colors.blue,
-			c = colors.bg,
-			s = colors.ibg,
-		}
-		return { fg = mode_color[vim.fn.mode()] }
-	end,
-})
-
--- Insert mid section. You can make any number of sections in neovim :)
--- for lualine it's any number greater then 2
-ins_left({
-	function()
-		return "%="
-	end,
-})
-
-------------------------------------------------------->
-
-ins_right({
-	-- Lsp server name .
-	function()
-		local msg = ""
-		local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-		local clients = vim.lsp.get_active_clients()
-		if next(clients) == nil then
-			return msg
-		end
-		for _, client in ipairs(clients) do
-			local filetypes = client.config.filetypes
-			if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-				return client.name
-			end
-		end
-		return msg
-	end,
-	icon = " LSP:",
-	color = function()
-		local mode_color = {
-			n = colors.cyan,
-			i = colors.ibg,
-			s = colors.ibg,
-		}
-		return { fg = mode_color[vim.fn.mode()] }
-	end,
-})
-
--- ins_right {
---   "progress",
---   icon = "",
---   -- color = { fg = colors.green, gui = '' },
---   color = function()
---     local mode_color = {
---       n = colors.cyan,
---       i = colors.ibg,
---       c = colors.bg,
---       s = colors.ibg,
---     }
---     return { fg = mode_color[vim.fn.mode()] }
---   end,
--- }
-
--- -- make a funtuin to get battery status from /sys/class/power_supply/BAT0/capacity
--- local function get_battery()
---   local f = io.open "/sys/class/power_supply/BAT1/capacity"
---   local s = f:read()
---   f:close()
---   return s
--- end
-
--- ins_right {
---   function()
---     local time = os.date "%H:%M"
---     return time
---   end,
---   icon = " ",
---   -- color = { fg = colors.cyan, gui = "" },
---   color = function()
---     local mode_color = {
---       n = colors.cyan,
---       i = colors.ibg,
---       c = colors.bg,
---       s = colors.ibg,
---     }
---     return { fg = mode_color[vim.fn.mode()] }
---   end,
--- }
-
--- ins_right({
--- 	"fileformat",
--- 	fmt = string.upper,
--- 	icons_enabled = true,
--- 	-- color = { fg = colors.green, gui = '' },
--- 	color = function()
--- 		local mode_color = {
--- 			n = colors.green,
--- 			i = colors.ibg,
--- 			c = colors.bg,
--- 			s = colors.ibg,
--- 		}
--- 		return { fg = mode_color[vim.fn.mode()] }
--- 	end,
--- })
-
-ins_right({
-	"branch",
-	icon = "",
-	-- color = { fg = colors.magenta, gui = 'bold' },
-	color = function()
-		local mode_color = {
-			n = colors.cyanorginal,
-			i = colors.ibg,
-			c = colors.bg,
-			s = colors.ibg,
-		}
-		return { fg = mode_color[vim.fn.mode()], gui = "bold" }
-	end,
-})
-
-ins_right({
-	"diagnostics",
-	sources = { "nvim_diagnostic" },
-	symbols = { error = " ", warn = " ", info = " " },
-	diagnostics_color = {
-		color_error = { fg = colors.red },
-		color_warn = { fg = colors.cyan },
-		color_info = { fg = colors.cyan },
-	},
-})
-
--- ins_right {
---   function()
---     return "▊"
---   end,
---   color = function()
---     local mode_color = {
---       n = colors.bg,
---       -- n = colors.magenta,
---       i = colors.ibg,
---       c = colors.bg,
---       s = colors.bg,
---     }
---     return { fg = mode_color[vim.fn.mode()] }
---   end,
---   padding = { left = 1 },
--- }
-
--- Now don't forget to initialize lualine
-lualine.setup(config)
-
-
-
-
-
-
-
-
-
--- pigeon
-    -- { "Pheon-Dev/pigeon" }
-
--- require("pigeon").setup({
--- 	enabled = true,
--- 	os = "linux", -- windows, osx
--- 	plugin_manager = "lazy", -- packer, paq, vim-plug
--- 	updates = {
--- 		enabled = true,
--- 		pretext = "",
--- 		posttext = "",
--- 		icon = "󱌖 ",
--- 	},
--- 	datetime = {
--- 		enabled = true,
--- 		time = {
--- 			enabled = true,
--- 			format = "%H:%M",
--- 			posttext = "hrs",
--- 			icon = "󰃰 ",
--- 		},
--- 		day = {
--- 			enabled = true,
--- 			format = "%A",
--- 			icon = "󰃶 ",
--- 		},
--- 		date = {
--- 			enabled = true,
--- 			format = "%Y-%m-%d",
--- 			icon = " ",
--- 		},
--- 	},
--- 	battery = {
--- 		enabled = true,
--- 		show_percentage = true,
--- 		show_status_text = false,
--- 		view = {
--- 			charge = {
--- 				zeros = { icon = "󰂎 " },
--- 				tens = { icon = "󰁺 " },
--- 				twenties = { icon = "󰁻 " },
--- 				thirties = { icon = "󰁼 " },
--- 				forties = { icon = "󰁽 " },
--- 				fifties = { icon = "󰁾 " },
--- 				sixties = { icon = "󰁿 " },
--- 				seventies = { icon = "󰂀 " },
--- 				eighties = { icon = "󰂁 " },
--- 				nineties = { icon = "󰂂 " },
--- 				hundred = { icon = "󰁹 " },
--- 			},
--- 			status = {
--- 				enabled = true,
--- 				charging = { icon = " 󱐋" },
--- 				discharging = { icon = " 󱐌" },
--- 				not_charging = { icon = "  " },
--- 				full = { icon = "  " },
--- 				unknown = { icon = " " },
--- 				critical = { icon = " " },
--- 				percentage = { icon = " 󰏰" },
--- 			},
--- 		},
--- 	},
--- 	internet = {
--- 		enabled = true,
--- 		signal = {
--- 			enabled = true,
--- 			unit = "mbps", -- mbps | mb/s | Mb/s | MB/s | Mbps | MBps
--- 		},
--- 		ethernet = {
--- 			enabled = true,
--- 			icons = {
--- 				connected = "󰞉 ",
--- 				disconnected = "󰕑 ",
--- 			},
--- 		},
---     wifi = {
---       status = {
---         connected = "󰤪",
---         disconnected = "󰤫",
---         enabled = true,
---       },
---       essid = {
---         enabled = true,
---       },
---       bit_rate = {
---         enabled = true,
---         unit = "mbps", -- or dbm
---       }
---     },
--- 	},
--- 	volume = {
--- 		enabled = true,
--- 		show_percentage = false,
--- 		icons = {
--- 			low = "󰕿",
--- 			medium = "󰖀",
--- 			high = "󰕾",
--- 			mute = "󰝟",
--- 		},
--- 	},
--- 	temperature = {
--- 		enabled = true,
--- 		show_percentage = false,
--- 		icon = "",
--- 	},
--- 	storage = {
--- 		enabled = true,
--- 		show_percentage = false,
--- 		icon = "󱛟",
--- 	},
--- 	ram = {
--- 		enabled = true,
--- 		show_percentage = false,
--- 		icon = "󰍛",
--- 	},
--- 	cpu = {
--- 		enabled = true,
--- 		show_percentage = false,
--- 		icon = "󰻠",
--- 	},
--- })

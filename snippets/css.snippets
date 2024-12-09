@@ -27,6 +27,16 @@ snippet ccc
 	align-items: center;
 	$1
 
+snippet fcenter
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	$1
+
+snippet fdc
+	flex-direction: column;
+	$1
+
 #------------------------>  snippet ----------------------------->
 snippet bos
 	box-shadow: 0 4px 12px 0 rgba(11, 18, 15, 0.57);
@@ -60,7 +70,7 @@ snippet .nav-links
 	}
 
 #------------------------>  snippet ----------------------------->
-snippet ifonts
+snippet importfonts
 	/* @import url('https://fonts.googleapis.com/css2?family=Andika&display=swap'); */
 	/* font-family: 'Andika', sans-serif; */
 	/* @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300;400&display=swap'); */
@@ -90,6 +100,13 @@ snippet ogc
   display: grid; place-items: center;       /* one line definitly centered layout */
   $1
 
-snippet center
+snippet gcenter
   display: grid; place-items: center;       /* one line definitly centered layout */
   $1
+
+#-------------------------------
+
+snippet ro
+	:root {
+		--$1: $2;
+	}

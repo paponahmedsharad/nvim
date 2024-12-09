@@ -29,14 +29,14 @@ autocmd("TextYankPost", {
   pattern = "*",
   callback = function() vim.highlight.on_yank() end,
 })
--- autocmd("FileType", {
--- 	desc = "Quit with q in this filetypes",
--- 	group = "_buffer",
--- 	pattern = "qf,help,man,lspinfo,startuptime,Trouble",
--- 	callback = function()
--- 		vim.keymap.set("n", "q", "<CMD>close<CR>")
--- 	end,
--- })
+autocmd("FileType", {
+	desc = "Quit with q in this filetypes",
+	group = "_buffer",
+	pattern = "qf,help,man,lspinfo,startuptime,Trouble",
+	callback = function()
+		vim.keymap.set("n", "q", "<CMD>close<CR>")
+	end,
+})
 
 -- 7. Make q close help, man, quickfix, dap floats
 autocmd("BufWinEnter", {
@@ -59,7 +59,7 @@ autocmd("BufWinEnter", {
 })
 
 autocmd("FileType", {
-	pattern = { "c", "javascript", "py", "cs" },
+	pattern = { "c", "javascript", "py", "css" },
 	callback = function()
 		vim.bo.shiftwidth = 4
 	end,

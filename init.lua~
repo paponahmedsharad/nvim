@@ -9,34 +9,26 @@ require("configs.cmp")
 require("configs.treesitter")
 require("configs.luasnip")
 require("configs.toggleterm")
--- require("configs.comment")
+require("configs.comment")
 require("configs.lsp-conf")
 require("configs.input").setup()
-require("configs.bufferline")
+-- require("configs.bufferline")
 -- require("configs.colorscheme")
-require("configs.statuslineOld")
+-- require("configs.statuslineOld")
 -- require("configs.statusline")
 -- require("configs.new-statusline")
 -- require("configs.cssHighlight")
 
-local ft = require('Comment.ft')
-require('snacks')
---1. Using method signature
--- Set only line comment or both
--- You can also chain the set calls
--- ft.set('yaml', '#%s').set('javascript', {'//%s', '/*%s*/'})
--- ft.set('lua', '---%s').set('javascript', {'//%s', '/*%s*/'})
 
 -- useful for recordeing video
--- vim.opt.guicursor = "i-ci:ver30-iCursor-blinkwait100-blinkon200-blinkoff9999"
+vim.opt.guicursor = "i-ci:ver30-iCursor-blinkwait100-blinkon200-blinkoff9999"
 -- require("configs.bubbleline")
 
 
 -- Lua
 -- require('onedark').setup { style = 'deep' }
 -- require('onedark').load()
--- vim.keymap.set({ "n" }, "<C-k>", "<cmd>TSHighlightCapturesUnderCursor<CR>")
-vim.cmd[[ nmap co gcc ]]
+vim.keymap.set({ "n" }, "<C-k>", "<cmd>TSHighlightCapturesUnderCursor<CR>")
 
 
 
@@ -93,7 +85,7 @@ vim.cmd[[ nmap co gcc ]]
 --   },
 --   ignore_filetypes = { cpp = true },
 --   color = {
---     suggestion_color = "#804d66",
+--     suggestion_color = "#000000",
 --     cterm = 244,
 --   }
 -- })

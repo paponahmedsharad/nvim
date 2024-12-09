@@ -1,49 +1,14 @@
-(
- (function_call
-   (identifier) @require_call
-   (#match? @require_call "require")
-   )
- (set! "priority" 105)
- )
+;; extends 
 
-(function_declaration
-  (identifier)@function_definition
-  )
-(
- (function_declaration
-   (dot_index_expression
-     (identifier)
-     (identifier)@function_definition
-     )
-   )
- (set! "priority" 105)
- )
-
-(
- (assignment_statement
-   (variable_list
-     (identifier)@function_definition
-     )
-   (
-    expression_list
-    (function_definition)
-    )
-   )
- (set! "priority" 105)
- )
-(
- (assignment_statement
-   (variable_list
-     (dot_index_expression
-       (identifier)
-       (identifier)@function_definition
-       )
-     )
-   (
-    expression_list
-    (function_definition)
-    )
-   )
- (set! "priority" 105)
- )
-
+(("and" @keyword.function) (#set! conceal "&"))
+(("return" @keyword.function) (#set! conceal "R"))
+(("then" @conditional) (#set! conceal "t"))
+(("else" @conditional) (#set! conceal "e"))
+(("elseif" @conditional) (#set! conceal "e"))
+(("end" @keyword.function) (#set! conceal "E"))
+(("for" @keyword) (#set! conceal "F"))
+(("function" @keyword.function) (#set! conceal "f"))
+(("if" @conditional) (#set! conceal "?"))
+((function_call name: (identifier) @function.builtin (#eq? @function.builtin "require")) (#set! conceal "R"))
+(("do" @repeat) (#set! conceal "d"))
+(("in" @keyword) (#set! conceal "i"))

@@ -6,12 +6,12 @@ end
 
 --> Define Colors
 local colors = {
-  selected_bg = "#1a1b26",
+  selected_bg = "None",
   selected_fg = "#008080",
   -- unfocused_bg = "#171614",
-  unfocused_bg = "#1a1b26",
+  unfocused_bg = "None",
   unfocused_fg = "#324a4e",
-  fill_bg = "#1a1b26",
+  fill_bg = "None",
   fill_fg = "#ffffff",
   yellow = "#ece61a",
   white = "#00ff00",
@@ -137,17 +137,17 @@ bufferline.setup {
     color_icons = true, -- whether or not to add the filetype icon highlights
     show_buffer_icons = true, -- disable filetype icons for buffers
     show_buffer_close_icons = false,
-    show_buffer_default_icon = true, -- whether or not an unrecognised filetype should show a default icon
+    -- show_buffer_default_icon = true, -- whether or not an unrecognised filetype should show a default icon
     show_close_icon = false,
     show_tab_indicators = true,
     -- persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
     -- can also be a table containing 2 custom separators
     -- [focused and unfocused]. eg: { '|', '|' }
     -- separator_style = "slant",
-    separator_style = "thin",
+    -- separator_style = "padded_slope",
     -- separator_style = "slant" | "thick" | "thin" | { 'any', 'any' },
     -- enforce_regular_tabs = false | true,
-    always_show_bufferline = false,
+    always_show_bufferline = true,
     -- sort_by = 'insert_after_current' |'insert_at_end' | 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
     --     -- add custom logic
     --     return buffer_a.modified > buffer_b.modified
@@ -155,5 +155,7 @@ bufferline.setup {
 
     --> diagonostic
     diagnostics = "nvim_lsp", --> buffername color will change acording to diagonostic
+
+            style_preset = bufferline.style_preset.no_italic,
   },
 }

@@ -48,7 +48,7 @@ map({ "n" }, "fd", [[:]])
 
 --> quit and save
 -- map("n", "<leader>q", "<cmd>qall!<CR>", nosilent)  --> quit all
-map({ "n" }, "<leader>w", "<cmd>w<CR>", opts)      --> save
+map({ "n" }, "<leader>w", "<cmd>w<CR>", {desc="Write", noremap = true, silent = true } )      --> save
 map({ "n", "i" }, "<C-s>", "<cmd>w<CR>", nosilent) --> save
 vim.cmd[[command! W execute 'w !sudo tee % > /dev/null' <bar> edit!]]
 
@@ -93,7 +93,10 @@ map("n", "cp", "yap<S-}>p")
 map({ "n", "i" }, "<A-r>", [[<Esc>:%s/\<<C-r><C-w>\>/]])
 
 --> a fancy box around the text
-map("n", "<leader>1", ":.!toilet  -w 200 -f term -F border<CR>", opts)
+-- map("n", "<leader>1", ":.!toilet  -w 200 -f term -F border<CR>", opts)
+
+-- map("n", "<leader>2", "<cmd>Telescope live_grep<CR>",{ desc = 'live grep' })
+-- map("n", "<leader>2", "<cmd>Telescope live_grep<CR>",{ desc = 'live grep' })
 
 vim.cmd([[
 "--> select the last item from lsp/cmp
@@ -163,13 +166,13 @@ end, { desc = "cd current file's directory" })
 map("n", "ff", ":Telescope find_files<CR>", opts) --> Find files
 map("n", "  ", ":Telescope find_files<CR>", opts) --> Find files
 map("n", "\\", ":Telescope oldfiles<CR>", opts)   --> Find recent files
-vim.keymap.set('n', '<leader>/', function()
+vim.keymap.set('n', '<leader>//', function()
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
     winblend = 10,
     previewer = false,
     layout_config = { height = 0.55 },
   })
-end, { desc = '[/] Fuzzily search in current buffer' })
+end, { desc = 'Fuzzy Search' })
 
 --> Harpoon
 -- map("n", "<leader>aa", ':lua require("harpoon.mark").add_file()<CR>', opts)
@@ -178,12 +181,13 @@ end, { desc = '[/] Fuzzily search in current buffer' })
 --> colorpicker
 -- vim.keymap.set({ "i", "n" }, "<C-p>", "<cmd>PickColorInsert<CR>", opts)
 vim.keymap.set({ "i", "n" }, "<C-p>", "<Esc><cmd>CccPick<CR>", opts)
+vim.keymap.set({ "i", "n" }, "<C-S-i>", "<Esc><cmd>BufferLinePick<CR>", opts)
 
 --> luaSnip
--- map("i", "<A-n>", "<Plug>luasnip-next-choice", opts) -- todo
+map("i", "<A-g>", "<Plug>luasnip-next-choice", opts) -- todo
 
 --> ChatGPT
-map("n", "<A-g>", "<cmd>ChatGPT<cr>", opts)
+-- map("n", "<A-g>", "<cmd>ChatGPT<cr>", opts)
 
 --> fzf registers
 map({ "n", "i" }, "<A-c>", "<cmd>FzfLua registers<CR>", opts)

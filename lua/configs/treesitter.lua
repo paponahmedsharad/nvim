@@ -4,7 +4,7 @@ if not ok then
 end
 
 configs.setup({
-      highlight = { enable = true, disable = { "css" } },
+      highlight = { enable = true, disable = { "css", } },
       indent = { enable = true, disable = { "python" } },
       context_commentstring = { enable = true, enable_autocmd = false },
       ensure_installed = { "bash", "fish", "vim", "html", "css", "javascript", "tsx", "typescript", "lua", "markdown", "markdown_inline", "query", "regex", },

@@ -3,7 +3,7 @@ local M = {}
 local default_config = {
   term_size = 10,
   direction = 'horizontal',
-  compiler = { lua = 'lua', javascript = 'bun run', typescript = 'bun run', python = 'python', c = 'gcc % -o %< && ./%<', cpp = 'g++ % -o %< && ./%< -lstdc++', rust = 'rustc % && ./%<' }
+  compiler = { lua = 'lua', javascript = 'bun run', typescript = 'bun run', python = 'python', c = 'gcc % -o %< && ./%<', cpp = 'g++ % -o %< && ./%< -lstdc++', rust = 'rustc % && ./%<', nix = 'nix-instantiate --eval --strict' }
 }
 
 -- Terminal height/width

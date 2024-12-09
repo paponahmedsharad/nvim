@@ -1,6 +1,6 @@
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 
 """" select the first item from lsp/cmp
 " im df <C-j><CR>
@@ -34,6 +34,7 @@ set softtabstop=2
 
 
 
+" hi Normal guifg=#778cd9
 
 
 

@@ -1,4 +1,26 @@
-(
- function_definition
- (identifier)@function_definition
- )
+;; extends 
+
+(("and" @keyword.operator) (#set! conceal "&"))
+(("break" @keyword) (#set! conceal "B"))
+(("global" @keyword) (#set! conceal "G"))
+(("import" @include) (#set! conceal "i"))
+(("del" @keyword) (#set! conceal "D"))
+(("for" @repeat) (#set! conceal "F"))
+(("with" @keyword) (#set! conceal "w"))
+(("not" @keyword.operator) (#set! conceal "!"))
+(("or" @keyword.operator) (#set! conceal "|"))
+(("def" @keyword.function) (#set! conceal "f"))
+((call function: (identifier) @function.builtin (#eq? @function.builtin "print")) (#set! conceal "p"))
+(("assert" @keyword) (#set! conceal "?"))
+(("if" @conditional) (#set! conceal "?"))
+(("while" @repeat) (#set! conceal "W"))
+((yield ("from") @keyword) (#set! conceal "F"))
+((import_from_statement ("from") @include) (#set! conceal "f"))
+(("else" @conditional) (#set! conceal "e"))
+(("continue" @keyword) (#set! conceal "C"))
+(("pass" @keyword) (#set! conceal "P"))
+(("elif" @conditional) (#set! conceal "e"))
+(("lambda" @include) (#set! conceal "λ"))
+(("class" @keyword) (#set! conceal "c"))
+(("return" @keyword) (#set! conceal "R"))
+(("yield" @keyword) (#set! conceal "Y"))
